@@ -1,9 +1,9 @@
 .DEFAULT_GOAL = all
 
 RM			= 	rm -rf
-CFLAGS		=	-Wall -Wextra -Werror -MMD -MP 
+CFLAGS		=	-Wall -Wextra -Werror -MMD -MP
 CPPFLAGS	= 	-Imlx -Iinclude
-LDFLAGS		=	-Lmlx -framework OpenGL -framework AppKit
+LDFLAGS		=	-Lmlx -framework OpenGL -framework AppKit -L src/libft -lft
 LDLIBS 		=	-lmlx
 
 OUTDIR		=	out/
@@ -37,14 +37,16 @@ $(OUTDIR)%.o : %.c
 all : $(NAME)
 
 $(NAME) : $(OBJS)
-	@make re -C libft
+	@make re -C src/libft
 	$Q$(CC) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS) $^ $(LDLIBS) -o $@
 	install_name_tool -change libmlx.dylib mlx/libmlx.dylib $(NAME)
 
 clean :
+	@make -C src/libft clean
 	$Q$(RM) $(OUTDIR)
 
 fclean : clean
+	@make -C src/libft fclean
 	$Q$(RM) $(NAME)
 	
 re : 
