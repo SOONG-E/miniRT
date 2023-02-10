@@ -2,17 +2,23 @@
 
 RM			= 	rm -rf
 CFLAGS		=	-Wall -Wextra -Werror -MMD -MP 
-CPPFLAGS	= 	-Imlx -Iincludes
+CPPFLAGS	= 	-Imlx -Iinclude
 LDFLAGS		=	-Lmlx -framework OpenGL -framework AppKit
 LDLIBS 		=	-lmlx
 
 OUTDIR		=	out/
 
 SRCS = \
-		miniRT.c		\
-		get_next_line.c	\
-		manage_error.c
-
+		src/miniRT.c						\
+		src/util/get_next_line.c			\
+		src/util/ft_count_array.c			\
+		src/manage/manage_error.c       	\
+		src/manage/manage_resource.c		\
+		src/parse/parse_line.c              \
+		src/parse/parse_uppercase_type.c	\
+		src/parse/parse_lowercase_type.c    \
+		src/parse/parse_utils.c				\
+		src/parse/parse_put_info.c
 Q = @
 ifdef DEBUG
 	Q = 
@@ -31,6 +37,7 @@ $(OUTDIR)%.o : %.c
 all : $(NAME)
 
 $(NAME) : $(OBJS)
+	@make re -C libft
 	$Q$(CC) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS) $^ $(LDLIBS) -o $@
 	install_name_tool -change libmlx.dylib mlx/libmlx.dylib $(NAME)
 
