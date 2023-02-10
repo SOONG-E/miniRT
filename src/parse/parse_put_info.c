@@ -36,8 +36,8 @@ t_rgb	make_rgb(char *info)
 	ret.r = ft_atoi(nums[0]);
 	ret.g = ft_atoi(nums[1]);
 	ret.b = ft_atoi(nums[2]);
-	if ((ret.r | 0x111) != 0x111 || (ret.g | 0x111) != 0x111 
-	|| (ret.b | 0x111) != 0x111)
+	if ((ret.r | 255) != 255 || (ret.g | 255) != 255
+	|| (ret.b | 255) != 255)
 		ft_exit("rgb is out of range!");
 	ft_free_splitted(nums);
 	return (ret);
