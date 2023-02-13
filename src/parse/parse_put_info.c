@@ -15,7 +15,7 @@ t_coor	make_coor(char *info, double min, double max)
 	t_coor	ret;
 	char	**nums;
 
-	nums = ft_split(info, ',');
+	nums = ft_split(info, ",");
 	if (ft_count_array(nums) != 3)
 		ft_exit("coordination need only three information");
 	ret.x = put_double(nums[0], min, max);
@@ -30,7 +30,7 @@ t_rgb	make_rgb(char *info)
 	t_rgb	ret;
 	char	**nums;
 
-	nums = ft_split(info, ',');
+	nums = ft_split(info, ",");
 	if (ft_count_array(nums) != 3)
 		ft_exit("rgb need only three information");
 	ret.r = ft_atoi(nums[0]);

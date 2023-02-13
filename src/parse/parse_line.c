@@ -11,7 +11,7 @@ static void recognize_object(char **info, t_meta *meta)
 		parse_ambi_light(info, meta);
 	else if (ft_strcmp(info[0], "C") == 0 && check_num_info(count, 4) == 0)
 		parse_camera(info, meta);
-	else if (ft_strcmp(info[0], "L") == 0 && check_num_info(count, 3) == 0)
+	else if (ft_strcmp(info[0], "L") == 0 && check_num_info(count, 4) == 0)
 		parse_light(info, meta);
 	else if (ft_strcmp(info[0], "sp") == 0 && check_num_info(count, 4) == 0)
 		parse_sphere(info, meta);
@@ -47,7 +47,7 @@ static void	fill_objs(char *file_name, t_meta *meta)
 	while (temp)
 	{
 		if (ft_strlen(temp) > 1)
-			recognize_object(ft_split(temp, ' '), meta);
+			recognize_object(ft_split(temp, "\n "), meta);
 		free(temp);
 		temp = get_next_line(fd);
 	}

@@ -1,16 +1,23 @@
 #include "libft.h"
 
-static size_t	ft_set(char cur, char charset)
+int	ft_set(char cur, char *charset)
 {
-	if (charset == cur)
-		return (1);
+	int	i;
+
+	i = 0;
+	while (charset[i])
+	{
+		if (charset[i] == cur)
+			return (1);
+		i++;
+	}
 	return (0);
 }
 
-static size_t	ft_cnt_str(const char *str, char charset)
+int	ft_cnt_str(char *str, char *charset)
 {
-	size_t	cnt;
-	size_t	i;
+	int	cnt;
+	int	i;
 
 	cnt = 0;
 	i = 0;
@@ -28,23 +35,11 @@ static size_t	ft_cnt_str(const char *str, char charset)
 	return (cnt);
 }
 
-static char	**ft_free_all(char **ret, int i)
+char	*ft_strdup_02(char *str, char *charset)
 {
-	while (--i >= 0)
-	{
-		free(ret[i]);
-		ret[i] = 0;
-	}
-	free(ret);
-	ret = 0;
-	return (NULL);
-}
-
-static char	*ft_str2dup(const char *str, char charset)
-{
-	size_t	i;
-	size_t	cnt;
+	int		i;
 	char	*temp;
+	int		cnt;
 
 	i = 0;
 	cnt = 0;
@@ -62,26 +57,24 @@ static char	*ft_str2dup(const char *str, char charset)
 	return (temp);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(char *str, char *charset)
 {
-	size_t	i;
+	int		i;
 	char	**temp;
 
 	i = 0;
-	temp = malloc(sizeof(char *) * (ft_cnt_str(s, c) + 1));
-	if (!temp)
+	temp = (char **)malloc(sizeof(char *) * (ft_cnt_str(str, charset) + 1));
+	if (temp == 0)
 		return (0);
-	while (*s)
+	while (*str)
 	{
-		while (*s && ft_set(*s, c))
-			s++;
-		if (*s && ft_set(*s, c) == 0)
+		while (*str && ft_set(*str, charset))
+			str++;
+		if (*str && ft_set(*str, charset) == 0)
 		{
-			temp[i] = ft_str2dup(s, c);
-			if (temp[i] == 0)
-				return (ft_free_all(temp, i));
-			while (*s && ft_set(*s, c) == 0)
-				s++;
+			temp[i] = ft_strdup_02(str, charset);
+			while (*str && ft_set(*str, charset) == 0)
+				str++;
 			i++;
 		}
 	}
