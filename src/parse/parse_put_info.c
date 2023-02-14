@@ -10,9 +10,9 @@ double	put_double(char *str, double min, double max)
 	return (ret);
 }
 
-t_coor	make_coor(char *info, double min, double max)
+t_vec	make_coor(char *info, double min, double max)
 {
-	t_coor	ret;
+	t_vec	ret;
 	char	**nums;
 
 	nums = ft_split(info, ",");
@@ -25,9 +25,9 @@ t_coor	make_coor(char *info, double min, double max)
 	return (ret);
 }
 
-t_coor	make_vec(char *info, double	min, double max)
+t_vec	make_vec(char *info, double	min, double max)
 {
-	t_coor	ret;
+	t_vec	ret;
 	double	distance;
 
 	ret = make_coor(info, min, max);
