@@ -24,7 +24,7 @@ int count_objects(char *file_name)
 	temp = get_next_line(fd);
 	while (temp)
 	{
-		if (ft_strlen(temp) > 0)
+		if (ft_strlen(temp) > 1)
 			++count;
 		free(temp);
 		temp = get_next_line(fd);
