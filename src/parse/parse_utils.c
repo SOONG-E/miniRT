@@ -38,9 +38,9 @@ void	check_available(t_meta *meta, t_type type)
 {
 	if (type == A && 0 < (meta->flag & 0x100))
 		ft_exit("couldn't apply A type more than one");
-	else if (type == C && 0 < (meta->flag & 0x010))
+	else if (type == C && 0 < (meta->flag & 0x10))
 		ft_exit("couldn't apply C type more than one");
-	else if (type == L && 0 < (meta->flag & 0x001))
+	else if (type == L && 0 < (meta->flag & 0x1))
 		ft_exit("couldn't apply L type more than one");
 }
 
