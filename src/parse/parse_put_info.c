@@ -25,6 +25,19 @@ t_coor	make_coor(char *info, double min, double max)
 	return (ret);
 }
 
+t_coor	make_vec(char *info, double	min, double max)
+{
+	t_coor	ret;
+	double	distance;
+
+	ret = make_coor(info, min, max);
+	distance = sqrt(pow(ret.x, 2) + pow(ret.y, 2) + pow(ret.z, 2));
+	ret.x /= distance;
+	ret.y /= distance;
+	ret.z /= distance;
+	return (ret);
+}
+
 t_rgb	make_rgb(char *info)
 {
 	t_rgb	ret;
@@ -49,14 +62,5 @@ t_cylin	make_cylin(char *diameter, char *height)
 
 	ret.diameter = ft_atod(diameter);
 	ret.height = ft_atod(height);
-	return (ret);
-}
-
-int	get_index(t_meta *meta)
-{
-	int ret;
-
-	ret = (meta->flag >> 3);
-	meta->flag += 1 << 3;
 	return (ret);
 }

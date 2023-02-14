@@ -13,7 +13,7 @@ void parse_camera(char **info, t_meta *meta)
 {
 	check_available(meta, C);
 	meta->cam.coor = make_coor(info[1], 0, 0);
-	meta->cam.vec = make_coor(info[2], -1, 1);
+	meta->cam.vec = make_vec(info[2], -1, 1);
 	meta->cam.fov = (int)put_double(info[3], 0, 180);
 	meta->flag |= 0b10;
 }

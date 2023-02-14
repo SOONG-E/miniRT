@@ -50,3 +50,12 @@ int	check_num_info(int count, int stand)
 		ft_exit("check num of information");
 	return (0);
 }
+
+int	get_index(t_meta *meta)
+{
+	int ret;
+
+	ret = (meta->flag >> 3);
+	meta->flag += 1 << 3;
+	return (ret);
+}
