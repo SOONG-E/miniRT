@@ -57,6 +57,6 @@ int	get_index(t_meta *meta)
 	int ret;
 
 	ret = (meta->flag >> 3);
-	meta->flag = ((ret + 1) << 3) + meta->flag & 0x111;
+	meta->flag += 1 << 3;
 	return (ret);
 }
