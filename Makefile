@@ -1,7 +1,7 @@
 .DEFAULT_GOAL = all
 
 RM			= 	rm -rf
-CFLAGS		=	-Wall -Wextra -Werror -MMD -MP
+CFLAGS		=	-Wall -Wextra -Werror -MMD -MP -g3
 CPPFLAGS	= 	-Imlx -Iinclude
 LDFLAGS		=	-Lmlx -framework OpenGL -framework AppKit -L src/libft -lft
 LDLIBS 		=	-lmlx
