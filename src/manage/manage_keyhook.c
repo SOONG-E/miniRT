@@ -1,4 +1,4 @@
-#include "miniRT.c"
+#include "miniRT.h"
 
 int	key_event(int key, t_mlx *mlx)
 {
