@@ -10,6 +10,9 @@ typedef struct	s_rgb		t_rgb;
 typedef struct	s_cylin		t_cylin;
 typedef struct	s_ambi		t_ambi;
 typedef	struct	s_meta		t_meta;
+typedef	struct	s_img		t_img;
+typedef	struct	s_mlx		t_mlx;
+typedef	struct	s_bg		t_bg;
 
 enum e_type
 {
@@ -75,20 +78,27 @@ struct s_meta
 	t_obj	*objs;
 };
 
-typedef struct s_img
+struct s_img
 {
 	void	*img_ptr;
 	char	*data;
 	int		bpp;
 	int		length;
 	int		endian;
-}	t_img;
+};
 
-typedef struct s_mlx
+struct s_mlx
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
 	t_img	img;
-}	t_mlx;
+};
+
+struct s_bg
+{
+	t_vec	hori;
+	t_vec	verti;
+};
+
 
 #endif
