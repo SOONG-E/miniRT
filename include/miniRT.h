@@ -11,10 +11,11 @@
 # include "structs.h"
 # include "get_next_line.h"
 # include "libft.h"
-# include "ray_trace.h"
 
-# define	WIDTH	800
-# define	HEIGHT	WIDTH / 16 / 9
+# define	WIDTH		800
+# define	HEIGHT		WIDTH / (16 / 9)
+# define	VP_HEIGHT	2.0
+# define	VP_WIDTH	(16.0 / 9.0) * VP_HEIGHT
 # define	KEY_ESC	53
 
 /*************/
@@ -22,7 +23,7 @@
 /************/
 
 void	ray_tracing(t_meta meta);
-void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
+void	put_pixel(t_mlx *mlx, int x, int y, int color);
 int		key_event(int key, t_mlx *mlx);
 int		exit_hook(void);
 void	window_init(t_mlx *mlx);
@@ -31,7 +32,8 @@ void	window_init(t_mlx *mlx);
 
 /* ray_trace_util.c */
 t_vec	init_vec(double x, double y, double z);
-double	write_color(t_vec *pixel_color);
+t_rgb	init_rgb(int r, int g, int b);
+double	write_color(t_vec pixel_color);
 
 /*************/
 /*	vec		*/
@@ -46,7 +48,7 @@ t_vec	vec_div(t_vec v1, double t);
 /* calculate_vec.c */
 t_vec	vec_unit(t_vec v);
 double	vec_length(t_vec v1);
-t_vec	vec_cal(t_vec v, double *a, int n);
+t_vec	vec_cal(t_vec *v, double *a, int n);
 t_vec	vec_cross(t_vec v1, t_vec v2);
 double	vec_dot(t_vec v1, t_vec v2);
 
