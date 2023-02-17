@@ -33,7 +33,7 @@ void	window_init(t_mlx *mlx);
 /* ray_trace_util.c */
 t_vec	init_vec(double x, double y, double z);
 t_rgb	init_rgb(int r, int g, int b);
-double	write_color(t_vec pixel_color);
+int		write_color(double t, t_rgb pixel_color);
 
 /*************/
 /*	vec		*/

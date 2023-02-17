@@ -1,6 +1,6 @@
 #include "miniRT.h"
 
-double	write_color(t_vec pixel_color)
+int	write_color(double t, t_rgb pixel_color)
 {
-	return ((int)(255.999 * pixel_color.x) << 16 | (int)(255.999 * pixel_color.y) << 8 | (int)(255.999 * pixel_color.z));
+	return ((int)t << 24 | (int)(255.999 * pixel_color.r) << 16 | (int)(255.999 * pixel_color.g) << 8 | (int)(255.999 * pixel_color.b));
 }
