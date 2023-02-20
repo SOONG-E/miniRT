@@ -13,7 +13,7 @@
 # include "libft.h"
 
 # define	WIDTH		800
-# define	HEIGHT		WIDTH / (16 / 9)
+# define	HEIGHT		WIDTH / (16.0 / 9.0)
 # define	VP_HEIGHT	2.0
 # define	VP_WIDTH	(16.0 / 9.0) * VP_HEIGHT
 # define	KEY_ESC	53
@@ -34,8 +34,8 @@ void	window_init(t_mlx *mlx);
 t_vec	init_vec(double x, double y, double z);
 t_rgb	init_rgb(int r, int g, int b);
 int		write_color(int t, t_vec pixel_color);
-int	hit_sphere(t_vec center, double radius, t_cam r);
-
+double	hit_sphere(t_vec center, double radius, t_cam r);
+t_vec	ray_at(t_cam ray, double t);
 /*************/
 /*	vec		*/
 /************/

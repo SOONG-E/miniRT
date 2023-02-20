@@ -100,5 +100,18 @@ struct s_bg
 	t_vec	verti;
 };
 
+typedef struct s_hit_record
+{
+	t_vec	p;
+	t_vec	normal;
+	double	t;
+}	t_hit_record;
+
+typedef struct s_record
+{
+	t_vec	center;
+	double	r;
+	int	(*hit)(t_cam ray, double min, double max, t_hit_record out);
+}	t_record;
 
 #endif
