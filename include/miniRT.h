@@ -34,6 +34,7 @@ void	window_init(t_mlx *mlx);
 t_vec	init_vec(double x, double y, double z);
 t_rgb	init_rgb(int r, int g, int b);
 int		write_color(int t, t_vec pixel_color);
+int	hit_sphere(t_vec center, double radius, t_cam r);
 
 /*************/
 /*	vec		*/

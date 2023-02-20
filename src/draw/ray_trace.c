@@ -1,11 +1,31 @@
 #include "miniRT.h"
 
-int ray_color(t_cam r) {
-    t_vec	unit_direction;
+t_vec ray_at(t_cam ray, double t)
+{
+	t_vec	out;
+
+	out.x = ray.coor.x + ray.vec.x * t;
+	out.y = ray.coor.y + ray.vec.y * t;
+	out.z = ray.coor.z + ray.vec.y * t;
+	return (out);
+}
+
+int	ray_color(t_cam r) {
+	t_vec	unit_direction;
+	t_vec	color;
+	t_vec	tmp;
+	t_vec	n;
 	double	t;
-	
+
 	unit_direction = vec_unit(r.vec);
-    t = 0.5 * (unit_direction.y + 1.0);
+    t = 0.2 * (unit_direction.y + 1.0);
+	if (hit_sphere(init_vec(0, 0, -1), 0.5, r) != -1)
+	{
+		tmp = ray_at(r ,t);
+		n = vec_unit(init_vec(tmp.x - 0, tmp.y - 0, tmp.z - (-1)));
+		color = vec_mul(init_vec(n.x + 1, n.y + 1, n.z + 1), 0.5);
+		return (write_color(t, color));
+	}
 	return (write_color(t, init_vec((1.0 - t) + t * 0.5, (1.0 - t) + 0.7 * t, 1.0)));
 }
 
@@ -35,8 +55,8 @@ void	put_color(t_mlx *mlx, t_bg bg, t_vec origin, t_vec ll_corner)
 		i = 0;
 		while (i < WIDTH)
 		{
-        	u = (double)i / (WIDTH - 1);
-        	v = (double)j / (HEIGHT - 1);
+			u = (double)i / (WIDTH - 1);
+			v = (double)j / (HEIGHT - 1);
 			r.vec = init_vec(ll_corner.x + u * bg.hori.x + v * bg.verti.x - origin.x,
 			ll_corner.y + u * bg.hori.y + v * bg.verti.y - origin.y,
 			ll_corner.z + u * bg.hori.z + v * bg.verti.z - origin.z);
