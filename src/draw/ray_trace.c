@@ -79,6 +79,7 @@ t_vec	get_lowerleft_corner(t_vec origin, t_vec hori, t_vec verti)
 	return (init_vec(origin.x + (-hori.x / 2) + (-verti.x / 2) + (0)
 		,origin.y + (-hori.y / 2) + (-verti.y / 2) + (0) 
 		,origin.z + (-hori.z / 2) + (-verti.z / 2) + (-focal_length)));
+	//return (vec_sub(vec_sub(vec_sub(origin, vec_div(hori, 2)), vec_div(verti, 2)), init_vec(0, 0, focal_length)));
 }
 
 void	put_color(t_mlx *mlx, t_bg bg, t_vec origin, t_vec ll_corner)
@@ -104,7 +105,7 @@ void	put_color(t_mlx *mlx, t_bg bg, t_vec origin, t_vec ll_corner)
 			put_pixel(mlx, i, j, ray_color(r));
 			++i;
 		}
-		printf("%f, %f, %d\n", u, v, j);
+		//printf("%f, %f, %d\n", u, v, j);
 		--j;
 	}
 }
@@ -145,6 +146,7 @@ void	draw_background(t_mlx *mlx, t_meta meta)
 	bg.hori = init_vec(VP_WIDTH, 0, 0);
 	bg.verti = init_vec(0, VP_HEIGHT, 0);
 	ll_corner = get_lowerleft_corner(meta.cam.coor, bg.hori, bg.verti);
+	printf("%f, %f, %f\n", ll_corner.x, ll_corner.y, ll_corner.z);
 	put_color(mlx, bg, meta.cam.coor, ll_corner);
 }
 
@@ -168,5 +170,4 @@ void	ray_tracing(t_meta meta)
 	window_init(&mlx);
 	pixel_put(&mlx, meta);
 	open_screen(mlx);
-
 }
