@@ -8,6 +8,14 @@ void	put_pixel(t_mlx *mlx, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
+void open_screen(t_mlx mlx)
+{
+	mlx_hook(mlx.win_ptr, 2, 1L << 0, &key_event, &mlx);
+	mlx_hook(mlx.win_ptr, 17, 0, &exit_hook, 0);
+	mlx_put_image_to_window(mlx.mlx_ptr, mlx.win_ptr, mlx.img.img_ptr, 0, 0);
+	mlx_loop(mlx.mlx_ptr);
+}
+
 void	window_init(t_mlx *mlx)
 {
 	mlx->mlx_ptr = mlx_init();

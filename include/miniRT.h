@@ -22,18 +22,21 @@
 /*	draw	*/
 /************/
 
+/* draw_background.c */
+void	draw_background(t_mlx *mlx, t_meta meta);
+
+/* ray_trace.c */
 void	ray_tracing(t_meta meta);
+int		ray_color(t_cam r);
 void	put_pixel(t_mlx *mlx, int x, int y, int color);
 int		key_event(int key, t_mlx *mlx);
 int		exit_hook(void);
 void	window_init(t_mlx *mlx);
 
-
-
 /* ray_trace_util.c */
 t_vec	init_vec(double x, double y, double z);
 t_rgb	init_rgb(int r, int g, int b);
-int		write_color(int t, t_vec pixel_color);
+int		color_to_int(int t, t_vec pixel_color);
 double	hit_sphere(t_vec center, double radius, t_cam r);
 t_vec	ray_at(t_cam ray, double t);
 /*************/
@@ -74,7 +77,8 @@ int		key_event(int key, t_mlx *mlx);
 int		exit_hook(void);
 
 /* manage_mlx.c */
-void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
+void	put_pixel(t_mlx *mlx, int x, int y, int color);
+void 	open_screen(t_mlx mlx);
 void	window_init(t_mlx *mlx);
 
 /*************/
