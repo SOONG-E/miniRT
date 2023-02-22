@@ -10,12 +10,11 @@ t_vec	init_vec(double x, double y, double z)
 	return (out);
 }
 
-t_rgb	init_rgb(int r, int g, int b)
+t_record	init_record(void)
 {
-	t_rgb	out;
+	t_record	out;
 
-	out.r = r;
-	out.g = g;
-	out.b = b;
+	out.t_min = 0;
+	out.t_max = __DBL_MAX__;
 	return (out);
 }
