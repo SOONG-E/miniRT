@@ -13,10 +13,12 @@ typedef	struct	s_meta		t_meta;
 typedef	struct	s_img		t_img;
 typedef	struct	s_mlx		t_mlx;
 typedef	struct	s_bg		t_bg;
+typedef struct	s_record	t_record;
+typedef struct	s_ray		t_ray;
 
 enum e_type
 {
-	A, C, L, SP, PL, CY
+	SP, PL, CY
 };
 
 struct s_rgb
@@ -76,7 +78,9 @@ struct s_meta
 	t_cam	cam;
 	t_light	light;
 	t_obj	*objs;
+	int		(*hits[3])(t_obj obj, t_ray ray, t_record *rec);
 };
+
 
 struct s_img
 {
@@ -100,18 +104,19 @@ struct s_bg
 	t_vec	verti;
 };
 
-typedef struct s_hit_record
+struct s_record
 {
 	t_vec	p;
 	t_vec	normal;
-	double	t;
-}	t_hit_record;
+	double	t_max;
+};
 
-typedef struct s_record
+struct s_ray
 {
-	t_vec	center;
-	double	r;
-	int	(*hit)(t_cam ray, double min, double max, t_hit_record out);
-}	t_record;
+	t_vec		coor;
+	t_vec		unit_vec;
+	t_record	obj_draw;
+};
+
 
 #endif
