@@ -18,7 +18,7 @@ typedef struct	s_ray		t_ray;
 
 enum e_type
 {
-	SP, PL, CY
+	SP, PL, CY, A, C, L
 };
 
 struct s_rgb

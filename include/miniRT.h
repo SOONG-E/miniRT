@@ -27,6 +27,12 @@
 /*	draw	*/
 /************/
 
+/* check_is_hit.c */
+
+int		hit_sphere(t_obj obj, t_ray ray, t_record *rec);
+int		hit_plane(t_obj obj, t_ray ray, t_record *rec);
+int		hit_cylinder(t_obj obj, t_ray ray, t_record *rec);
+
 /* draw_background.c */
 void	draw_background(t_mlx *mlx, t_meta meta);
 
@@ -41,8 +47,7 @@ void	window_init(t_mlx *mlx);
 /* ray_trace_util.c */
 t_vec	init_vec(double x, double y, double z);
 int		color_to_int(int t, t_vec pixel_color);
-double	hit_sphere(t_vec center, double radius, t_cam r);
-t_vec	ray_at(t_cam ray, double t);
+t_vec 	ray_at(t_ray ray, double t);
 /*************/
 /*	vec		*/
 /************/
