@@ -17,7 +17,7 @@ int main(int ac, char **av)
 
 0. mlx창 띄우기
 	mlx 구조체 {
-		mlx
+		mlxx
 		window
 		img
 

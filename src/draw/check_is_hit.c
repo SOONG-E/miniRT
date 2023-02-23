@@ -10,12 +10,11 @@ t_vec ray_at(t_ray ray, double t)
 	return (out);
 }
 
-int	front_face(t_ray ray, t_record *rec)
+void	front_face(t_ray ray, t_record *rec)
 {
-	if (vec_dot(ray.unit_vec, rec->normal))
-		rec->normal = init_vec(-rec->normal.x, -rec->normal.y, -rec->normal.z);
-	else
-		rec->normal = init_vec(rec->normal.x, rec->normal.y, rec->normal.z);
+	if (vec_dot(ray.unit_vec, rec->normal) < 0.0)
+		return ;
+	rec->normal = vec_mul(rec->normal, -1);
 }
 
 int	hit_sphere(t_obj obj, t_ray ray, t_record *rec)
@@ -29,33 +28,38 @@ int	hit_sphere(t_obj obj, t_ray ray, t_record *rec)
 	oc = vec_sub(ray.coor, obj.coor);
 	a = vec_dot(ray.unit_vec, ray.unit_vec);
 	half_b = vec_dot(oc, ray.unit_vec);
-	discriminant = half_b * half_b - a * (vec_dat(oc, oc) - (obj.ratio * obj.ratio));
-	// 	c = vec_dat(oc, oc) - (obj.ratio * obj.ratio);
-	// discriminant = half_b * half_b - a * c;
+	discriminant = half_b * half_b - a * (vec_dot(oc, oc) - (obj.ratio * obj.ratio));
 	if (discriminant < 0)
 		return (FALSE);
-	root = (-half_b - sqrt(discriminant));
-	if (root < T_MIN || root < rec->t_max)
+	root = (-half_b - sqrt(discriminant)) / a;
+	if (root < T_MIN || root > rec->t_max)
 	{
 		root = (-half_b + sqrt(discriminant)) / a;
-		if (root < T_MIN || root < rec->t_max)
+		if (root < T_MIN || root > rec->t_max)
 			return (FALSE);
 	}
 	rec->t_max = root;
-	rec->p = ray_at(ray, root);
+	rec->p = ray_at(ray, rec->t_max);
 	rec->normal = vec_div(vec_sub(rec->p, obj.coor), obj.ratio);
+
 	front_face(ray, rec);
 	return (TRUE);
 }
 
 int	hit_plane(t_obj obj, t_ray ray, t_record *rec)
 {
+	(void)obj;
+	(void)ray;
+	(void)rec;
 	printf("plane 구현중");
 	return FALSE;
 }
 
 int	hit_cylinder(t_obj obj, t_ray ray, t_record *rec)
 {
+	(void)obj;
+	(void)ray;
+	(void)rec;
 	printf("cylinder 구현중");
 	return FALSE;
 }

@@ -7,7 +7,7 @@ void parse_sphere(char **info, t_meta *meta)
 	idx = get_index(meta);
 	meta->objs[idx].type = SP;
 	meta->objs[idx].coor = make_coor(info[1], 0, 0);
-	meta->objs[idx].ratio = put_double(info[2], 0, 0);
+	meta->objs[idx].ratio = (put_double(info[2], 0, 0)) / 2;
 	meta->objs[idx].rgb = make_rgb(info[3]);
 }
 

@@ -14,7 +14,6 @@ t_record	init_record(void)
 {
 	t_record	out;
 
-	out.t_min = 0;
 	out.t_max = __DBL_MAX__;
 	return (out);
 }
