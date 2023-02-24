@@ -38,19 +38,19 @@ t_vec	make_vec(char *info, double	min, double max)
 	return (ret);
 }
 
-t_rgb	make_rgb(char *info)
+t_vec	make_rgb(char *info)
 {
-	t_rgb	ret;
+	t_vec	ret;
 	char	**nums;
 
 	nums = ft_split(info, ",");
 	if (ft_count_array(nums) != 3)
 		ft_exit("rgb need only three information");
-	ret.r = ft_atoi(nums[0]);
-	ret.g = ft_atoi(nums[1]);
-	ret.b = ft_atoi(nums[2]);
-	if ((ret.r | 255) != 255 || (ret.g | 255) != 255
-	|| (ret.b | 255) != 255)
+	ret.x = put_double(nums[0], 0, 255);
+	ret.y = put_double(nums[0], 0, 255);
+	ret.z = put_double(nums[0], 0, 255);
+	if (((int)ret.x | 255) != 255 || ((int)ret.y | 255) != 255
+	|| ((int)ret.z | 255) != 255)
 		ft_exit("rgb is out of range!");
 	ft_free_splitted(nums);
 	return (ret);

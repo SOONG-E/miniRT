@@ -6,7 +6,6 @@ typedef struct	s_obj		t_obj;
 typedef struct	s_cam		t_cam;
 typedef struct	s_light		t_light;
 typedef struct	s_vec		t_vec;
-typedef struct	s_rgb		t_rgb;
 typedef struct	s_cylin		t_cylin;
 typedef struct	s_ambi		t_ambi;
 typedef	struct	s_meta		t_meta;
@@ -21,24 +20,17 @@ enum e_type
 	SP, PL, CY, A, C, L
 };
 
-struct s_rgb
-{
-	unsigned int	r;
-	unsigned int	g;
-	unsigned int	b;
-};
-
-struct s_ambi
-{
-	double	ratio;
-	t_rgb	rgb;
-};
-
 struct s_vec
 {
 	double	x;
 	double	y;
 	double	z;
+};
+
+struct s_ambi
+{
+	double	ratio;
+	t_vec	rgb;
 };
 
 struct s_cam
@@ -65,7 +57,7 @@ struct s_obj
 	t_type	type;
 	t_vec	coor;
 	t_vec	vec;
-	t_rgb	rgb;
+	t_vec	rgb;
 	double	ratio;
 	t_cylin	cylin;
 };

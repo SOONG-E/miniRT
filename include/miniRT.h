@@ -119,7 +119,7 @@ int		get_index(t_meta *meta);
 double	put_double(char *str, double min, double max);
 t_vec	make_coor(char *info, double min, double max);
 t_vec	make_vec(char *info, double	min, double max);
-t_rgb	make_rgb(char *info);
+t_vec	make_rgb(char *info);
 t_cylin	make_cylin(char *diameter, char *height);
 
 /*************/
