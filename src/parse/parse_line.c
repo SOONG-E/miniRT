@@ -54,6 +54,8 @@ static void	fill_objs(char *file_name, t_meta *meta)
 		free(temp);
 		temp = get_next_line(fd);
 	}
+	if ((meta->flag & 0b111) != 0b111)
+		ft_exit("A, C, L must exist once");
 	free(temp);
 }
 
