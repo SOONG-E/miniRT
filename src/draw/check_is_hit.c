@@ -41,7 +41,7 @@ int	hit_sphere(t_obj obj, t_ray ray, t_record *rec)
 	rec->t_max = root;
 	rec->p = ray_at(ray, rec->t_max);
 	rec->normal = vec_div(vec_sub(rec->p, obj.coor), obj.ratio);
-
+	rec->albedo = obj.rgb;
 	front_face(ray, rec);
 	return (TRUE);
 }

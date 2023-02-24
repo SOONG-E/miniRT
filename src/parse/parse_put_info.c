@@ -47,11 +47,14 @@ t_vec	make_rgb(char *info)
 	if (ft_count_array(nums) != 3)
 		ft_exit("rgb need only three information");
 	ret.x = put_double(nums[0], 0, 255);
-	ret.y = put_double(nums[0], 0, 255);
-	ret.z = put_double(nums[0], 0, 255);
+	ret.y = put_double(nums[1], 0, 255);
+	ret.z = put_double(nums[2], 0, 255);
 	if (((int)ret.x | 255) != 255 || ((int)ret.y | 255) != 255
 	|| ((int)ret.z | 255) != 255)
 		ft_exit("rgb is out of range!");
+	ret.x /= 255.0;
+	ret.y /= 255.0;
+	ret.z /= 255.0;
 	ft_free_splitted(nums);
 	return (ret);
 }

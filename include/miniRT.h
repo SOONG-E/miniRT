@@ -36,6 +36,10 @@ int		hit_cylinder(t_obj obj, t_ray ray, t_record *rec);
 /* draw_background.c */
 void	draw_background(t_mlx *mlx, t_meta meta);
 
+/* phong_lighting.c */
+
+t_vec	phong_lighting(t_meta meta, t_ray ray);
+
 /* ray_trace.c */
 void	ray_tracing(t_meta meta);
 int		ray_color(t_ray r, t_meta meta);
@@ -48,6 +52,8 @@ void	window_init(t_mlx *mlx);
 t_vec	init_vec(double x, double y, double z);
 int		color_to_int(int t, t_vec pixel_color);
 t_vec 	ray_at(t_ray ray, double t);
+t_vec	vec_min(t_vec a, t_vec b);
+
 /*************/
 /*	vec		*/
 /************/
@@ -57,6 +63,7 @@ t_vec	vec_add(t_vec v1, t_vec v2);
 t_vec 	vec_sub(t_vec v1, t_vec v2);
 t_vec	vec_mul(t_vec v1, double t);
 t_vec	vec_div(t_vec v1, double t);
+t_vec	vecs_mul(t_vec v1, t_vec v2);
 
 /* calculate_vec.c */
 t_vec	vec_unit(t_vec v);

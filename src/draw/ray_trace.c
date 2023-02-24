@@ -22,7 +22,7 @@ int	ray_color(t_ray ray, t_meta meta)
 
 	ray.obj_draw = init_record();
 	if (is_hit(meta, ray, &ray.obj_draw) == TRUE)
-		return(color_to_int(0, vec_mul(vec_add(ray.obj_draw.normal, init_vec(1, 1, 1)), 0.5)));
+		return(color_to_int(0, phong_lighting(meta, ray)));
 	t = 0.5 * (ray.unit_vec.y + 1.011); //투명도
 	return (color_to_int(t, init_vec((1.0 - t) + t * 0.5, (1.0 - t) + 0.7 * t, 1.0)));
 }

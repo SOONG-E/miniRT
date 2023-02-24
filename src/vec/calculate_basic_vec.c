@@ -39,3 +39,13 @@ t_vec	vec_div(t_vec v1, double t)
 	out.z = v1.z * 1/t;
 	return (out);
 }
+
+t_vec	vecs_mul(t_vec v1, t_vec v2)
+{
+	t_vec out;
+
+	out.x = v1.x * v2.x;
+	out.y = v1.y * v2.y;
+	out.z = v1.z * v2.z;
+	return (out);
+}

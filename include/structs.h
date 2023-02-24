@@ -101,6 +101,7 @@ struct s_record
 	t_vec	p;
 	t_vec	normal;
 	double	t_max;
+	t_vec		albedo;
 };
 
 struct s_ray

@@ -1,14 +1,14 @@
 #include "miniRT.h"
 
-static t_vec	get_lowerleft_corner(t_vec origin, t_vec hori, t_vec verti)
+static t_vec	get_lowerleft_corner(t_vec origin, t_vec hori, t_vec verti, t_cam cam)
 {
 	double	focal_length;
 
-	focal_length = 1.0;
-
-	return (init_vec(origin.x + (-hori.x / 2) + (-verti.x / 2) + (0)
-		,origin.y + (-hori.y / 2) + (-verti.y / 2) + (0) 
-		,origin.z + (-hori.z / 2) + (-verti.z / 2) + (-focal_length)));
+	focal_length = cam.fov / 180.0;
+	t_vec corner = vec_sub(origin, vec_div(hori, 2.0));
+	corner = vec_sub(corner, vec_div(verti, 2.0));
+	corner = vec_sub(corner, init_vec(0.0, 0.0, focal_length));
+	return (corner);
 }
 
 static void	put_color(t_mlx *mlx, t_meta meta, t_bg bg, t_vec ll_corner)
@@ -19,22 +19,25 @@ static void	put_color(t_mlx *mlx, t_meta meta, t_bg bg, t_vec ll_corner)
 	int		i;
 	int		j;
 
-	r.coor = init_vec(0, 0, 0); //이거 카메라 좌표로 변경해야하나요???
-	j = HEIGHT - 1;
-	while (j >= 0)
+	r.coor = meta.cam.coor;
+	j = 0;
+	while (j < HEIGHT)
 	{
 		i = 0;
 		while (i < WIDTH)
 		{
 			u = (double)i / (WIDTH - 1);
-			v = 1 - (double)j / (HEIGHT - 1);
-			r.unit_vec = vec_unit(init_vec(ll_corner.x + u * bg.hori.x + v * bg.verti.x - meta.cam.coor.x,
-			ll_corner.y + u * bg.hori.y + v * bg.verti.y - meta.cam.coor.y,
-			ll_corner.z + u * bg.hori.z + v * bg.verti.z - meta.cam.coor.z));
+			v = 1.0 - ((double)j / (HEIGHT - 1));
+			t_vec horizontal = vec_mul(bg.hori, u);
+			t_vec vertical = vec_mul(bg.verti, v);
+			t_vec dir = vec_add(ll_corner, horizontal);
+			dir = vec_add(dir, vertical);
+			dir = vec_min(dir, r.coor);
+			r.unit_vec = vec_unit(dir);
 			put_pixel(mlx, i, j, ray_color(r, meta));
-			++i;
+			i++;
 		}
-		--j;
+		j++;
 	}
 }
 
@@ -45,6 +48,6 @@ void	draw_background(t_mlx *mlx, t_meta meta)
 
 	bg.hori = init_vec(VP_WIDTH, 0, 0);
 	bg.verti = init_vec(0, VP_HEIGHT, 0);
-	ll_corner = get_lowerleft_corner(meta.cam.coor, bg.hori, bg.verti);
+	ll_corner = get_lowerleft_corner(meta.cam.coor, bg.hori, bg.verti, meta.cam);
 	put_color(mlx, meta, bg, ll_corner);
 }
