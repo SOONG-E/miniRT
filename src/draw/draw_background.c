@@ -35,9 +35,9 @@ static void	put_color(t_mlx *mlx, t_meta meta, t_bg bg, t_vec ll_corner)
 			dir = vec_min(dir, r.coor);
 			r.unit_vec = vec_unit(dir);
 			put_pixel(mlx, i, j, ray_color(r, meta));
-			i++;
+			++i;
 		}
-		j++;
+		++j;
 	}
 }
 

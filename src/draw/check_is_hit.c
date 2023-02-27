@@ -48,18 +48,32 @@ int	hit_sphere(t_obj obj, t_ray ray, t_record *rec)
 
 int	hit_plane(t_obj obj, t_ray ray, t_record *rec)
 {
-	(void)obj;
-	(void)ray;
-	(void)rec;
-	printf("plane 구현중");
-	return FALSE;
+	float	numrator;
+	float	denominator;
+	float	root;
+
+	denominator = vec_dot(ray.unit_vec, obj.vec);
+	if (fabs(denominator) < T_MIN)
+		return (FALSE);
+	numrator = vec_dot(vec_sub(obj.coor, ray.coor), obj.vec);
+	root = numrator / denominator;
+	if (root < T_MIN || root > rec->t_max)
+		return (FALSE);
+	rec->t_max = root;
+	rec->p = ray_at(ray, rec->t_max);
+	rec->normal = obj.vec;
+	front_face(ray, rec);
+	rec->albedo = obj.rgb;
+	return (TRUE);
 }
 
 int	hit_cylinder(t_obj obj, t_ray ray, t_record *rec)
 {
-	(void)obj;
-	(void)ray;
-	(void)rec;
-	printf("cylinder 구현중");
-	return FALSE;
+	int	result;
+
+	result = FALSE;
+	result = hit_cylinder_cap(obj, ray, rec, obj.cylin.height / 2);
+	result = hit_cylinder_cap(obj, ray, rec, -(obj.cylin.height / 2));
+	result = hit_cylinder_side(obj, ray, rec);
+	return result;
 }
