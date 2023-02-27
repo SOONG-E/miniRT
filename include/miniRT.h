@@ -27,8 +27,12 @@
 /*	draw	*/
 /************/
 
-/* check_is_hit.c */
+/* check_hit_cylinder.c */
+int 	hit_cylinder_cap(t_obj obj, t_ray ray, t_record *rec, double height);
+int		hit_cylinder_side(t_obj obj, t_ray ray, t_record *rec);
 
+/* check_is_hit.c */
+void	front_face(t_ray ray, t_record *rec);
 int		hit_sphere(t_obj obj, t_ray ray, t_record *rec);
 int		hit_plane(t_obj obj, t_ray ray, t_record *rec);
 int		hit_cylinder(t_obj obj, t_ray ray, t_record *rec);
@@ -53,6 +57,12 @@ t_vec	init_vec(double x, double y, double z);
 int		color_to_int(int t, t_vec pixel_color);
 t_vec 	ray_at(t_ray ray, double t);
 t_vec	vec_min(t_vec a, t_vec b);
+
+/* check_hit_cylinder.c */
+int		hit_cylinder_cap(t_obj obj, t_ray ray, t_record *rec, double height);
+int		cy_boundary(t_obj obj, t_vec at_point);
+t_vec	get_cylinder_normal(t_obj obj, t_vec at_point, double hit_height);
+int		hit_cylinder_side(t_obj obj, t_ray ray, t_record *rec);
 
 /*************/
 /*	vec		*/

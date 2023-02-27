@@ -27,8 +27,11 @@ SRCS = \
 		src/vec/init_attr.c					\
 		src/draw/ray_trace.c				\
 		src/draw/ray_trace_util.c			\
-
-
+		src/draw/draw_background.c			\
+		src/draw/check_is_hit.c				\
+		src/draw/check_hit_cylinder.c		\
+		src/draw/phong_lighting.c
+		
 Q = @
 ifdef DEBUG
 	Q = 
