@@ -30,7 +30,8 @@ SRCS = \
 		src/draw/draw_background.c			\
 		src/draw/check_is_hit.c				\
 		src/draw/check_hit_cylinder.c		\
-		src/draw/phong_lighting.c
+		src/draw/phong_lighting.c			\
+		src/draw/draw_shadow.c				\
 		
 Q = @
 ifdef DEBUG

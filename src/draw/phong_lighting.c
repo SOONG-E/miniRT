@@ -20,13 +20,22 @@ t_vec	vec_scal_add(t_vec v, double d)
 	return (v);
 }
 
-t_vec	point_light_get(t_ray ray, t_light light)
+t_vec	ght_get(t_meta meta, t_ray ray, t_light light)
 {
 	t_vec	diffuse;
 	t_vec	light_dir;
+	double	light_len;
+	t_ray	light_ray;
 	double	kd;
 
-	light_dir = vec_unit(vec_sub(light.coor, ray.obj_draw.p));
+	(void)meta;
+	light_dir = vec_sub(light.coor, ray.obj_draw.p);
+	light_len = vec_length(light_dir);
+	light_ray = init_ray(vec_add(ray.obj_draw.p, vec_mul(ray.obj_draw.normal, T_MIN)), light_dir);
+	if (in_shadow(meta, light_ray, light_len) == TRUE)
+		return (init_vec(0, 0, 0));
+	light_dir = vec_unit(light_dir);
+	//light_dir = vec_unit(vec_sub(light.coor, ray.obj_draw.p));
 	kd = fmax(vec_dot(ray.obj_draw.normal, light_dir), 0.0);
 	diffuse = vec_mul(init_vec(1, 1, 1), kd);
 
@@ -54,7 +63,7 @@ t_vec	phong_lighting(t_meta meta, t_ray ray)
 	// t_vec	specular;
 
 	light_color = init_vec(0, 0, 0);
-	diffuse = point_light_get(ray, meta.light);
+	diffuse = ght_get(meta, ray, meta.light);
 	// specular = get_specular(ray, meta.light);
 	// light_color = vec_add(diffuse, specular);
 	light_color = vec_add(light_color, diffuse);
