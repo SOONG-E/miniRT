@@ -36,32 +36,22 @@ void	front_face(t_ray ray, t_record *rec);
 int		hit_sphere(t_obj obj, t_ray ray, t_record *rec);
 int		hit_plane(t_obj obj, t_ray ray, t_record *rec);
 int		hit_cylinder(t_obj obj, t_ray ray, t_record *rec);
-
-/* draw_background.c */
-void	draw_background(t_mlx *mlx, t_meta meta);
+int		is_hit(t_meta meta, t_ray ray, t_record *rec);
 
 /* phong_lighting.c */
-
 t_vec	phong_lighting(t_meta meta, t_ray ray);
 
 /* ray_trace.c */
 void	ray_tracing(t_meta meta);
-int		ray_color(t_ray r, t_meta meta);
-void	put_pixel(t_mlx *mlx, int x, int y, int color);
-int		key_event(int key, t_mlx *mlx);
-int		exit_hook(void);
-void	window_init(t_mlx *mlx);
 
 /* ray_trace_util.c */
-t_vec	init_vec(double x, double y, double z);
 int		color_to_int(int t, t_vec pixel_color);
-t_vec 	ray_at(t_ray ray, double t);
 t_vec	vec_min(t_vec a, t_vec b);
+t_vec 	ray_at(t_ray ray, double t);
+t_vec	get_lowerleft_corner(t_vec origin, t_bg bg, t_vec w);
 
 /* check_hit_cylinder.c */
 int		hit_cylinder_cap(t_obj obj, t_ray ray, t_record *rec, double height);
-int		cy_boundary(t_obj obj, t_vec at_point);
-t_vec	get_cylinder_normal(t_obj obj, t_vec at_point, double hit_height);
 int		hit_cylinder_side(t_obj obj, t_ray ray, t_record *rec);
 
 /*************/
