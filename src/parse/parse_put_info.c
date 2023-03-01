@@ -28,13 +28,9 @@ t_vec	make_coor(char *info, double min, double max)
 t_vec	make_vec(char *info, double	min, double max)
 {
 	t_vec	ret;
-	double	distance;
 
 	ret = make_coor(info, min, max);
-	distance = sqrt(pow(ret.x, 2) + pow(ret.y, 2) + pow(ret.z, 2));
-	ret.x /= distance;
-	ret.y /= distance;
-	ret.z /= distance;
+	ret = vec_unit(ret);
 	return (ret);
 }
 

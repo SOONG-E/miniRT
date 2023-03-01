@@ -49,7 +49,7 @@ static void	fill_objs(char *file_name, t_meta *meta)
 	temp = get_next_line(fd);
 	while (temp)
 	{
-		if (ft_strlen(temp) > 1)
+		if (1 < ft_strlen(temp) && temp[0] != '#')
 			recognize_object(ft_split(temp, "\n "), meta);
 		free(temp);
 		temp = get_next_line(fd);
