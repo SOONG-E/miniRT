@@ -1,6 +1,6 @@
 #include "miniRT.h"
 
-t_vec clamp(t_vec v, double min, double max)
+static t_vec clamp(t_vec v, double min, double max)
 {
 	if (v.x < min)
 		v.x = min;
@@ -39,8 +39,27 @@ t_vec	vec_min(t_vec a, t_vec b)
 		out.y = a.y;
 	if (a.z < out.z)
 		out.z = a.z;
-	// out.x = min(a.x, b.x);
-	// out.y = min(a.y, b.y);
-	// out.z = min(a.z, b.z);
 	return (out);
+}
+
+t_vec ray_at(t_ray ray, double t)
+{
+	t_vec	out;
+
+	out.x = ray.coor.x + ray.unit_vec.x * t;
+	out.y = ray.coor.y + ray.unit_vec.y * t;
+	out.z = ray.coor.z + ray.unit_vec.y * t;
+	return (out);
+}
+
+t_vec	get_lowerleft_corner(t_vec origin, t_bg bg, t_vec w)
+{
+	// double	focal_length;
+	t_vec	corner;
+
+	// focal_length = cam.fov / 180.0;
+	corner = vec_sub(origin, vec_div(bg.hori, 2.0));
+	corner = vec_sub(corner, vec_div(bg.verti, 2.0));
+	corner = vec_sub(corner, w);
+	return (corner);
 }
