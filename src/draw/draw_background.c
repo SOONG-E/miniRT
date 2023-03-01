@@ -32,7 +32,7 @@ static void	put_color(t_mlx *mlx, t_meta meta, t_bg bg, t_vec ll_corner)
 			t_vec vertical = vec_mul(bg.verti, v);
 			t_vec dir = vec_add(ll_corner, horizontal);
 			dir = vec_add(dir, vertical);
-			dir = vec_min(dir, r.coor);
+			dir = vec_sub(dir, r.coor);
 			r.unit_vec = vec_unit(dir);
 			put_pixel(mlx, i, j, ray_color(r, meta));
 			++i;
