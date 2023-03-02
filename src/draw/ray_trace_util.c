@@ -48,7 +48,7 @@ t_vec ray_at(t_ray ray, double t)
 
 	out.x = ray.coor.x + ray.unit_vec.x * t;
 	out.y = ray.coor.y + ray.unit_vec.y * t;
-	out.z = ray.coor.z + ray.unit_vec.y * t;
+	out.z = ray.coor.z + ray.unit_vec.z * t;
 	return (out);
 }
 
