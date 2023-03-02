@@ -66,6 +66,7 @@ struct s_meta
 {
 	int		obj_num;
 	int		flag;
+	int		mode;
 	t_ambi	ambi;
 	t_cam	cam;
 	t_light	light;

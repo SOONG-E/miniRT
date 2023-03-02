@@ -33,6 +33,7 @@ static void create_meta(char *file_name, t_meta *meta)
 	if (meta->objs == NULL)
 		ft_exit("system function fail");
 	meta->flag = 0;
+	meta->mode = -1;
 	meta->hits[SP] = hit_sphere;
 	meta->hits[PL] = hit_plane;
 	meta->hits[CY] = hit_cylinder;

@@ -16,7 +16,17 @@
 # define	HEIGHT		WIDTH / (16.0 / 9.0)
 # define	VP_HEIGHT	2.0
 # define	VP_WIDTH	(16.0 / 9.0) * VP_HEIGHT
-# define	KEY_ESC	53
+
+# define	KEY_ESC			53
+# define	KEY_ARROW_LEFT	123
+# define 	KEY_ARROW_RIGHT	124
+# define 	KEY_ARROW_DOWN	125
+# define	KEY_ARROW_UP	126
+# define	KEY_C			8
+# define	KEY_L			37
+# define	KEY_Z			6
+# define	KEY_SHIFT		257
+# define	KEY_CTRL		256
 
 # define	TRUE	0
 # define	FALSE	1
@@ -42,7 +52,7 @@ int		is_hit(t_meta meta, t_ray ray, t_record *rec);
 t_vec	phong_lighting(t_meta meta, t_ray ray);
 
 /* ray_trace.c */
-void	ray_tracing(t_meta meta);
+void	ray_tracing(t_meta *meta);
 
 /* ray_trace_util.c */
 int		color_to_int(int t, t_vec pixel_color);
@@ -95,7 +105,7 @@ int		exit_hook(void);
 
 /* manage_mlx.c */
 void	put_pixel(t_mlx *mlx, int x, int y, int color);
-void 	open_screen(t_mlx mlx);
+void	open_screen(t_mlx mlx, t_meta *meta);
 void	window_init(t_mlx *mlx);
 
 /*************/
