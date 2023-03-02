@@ -9,3 +9,8 @@ void	ft_free_splitted(char **chars)
 		free(chars[i++]);
 	free(chars);
 }
+
+void	free_objs(t_obj *objs)
+{
+	free(objs);
+}
