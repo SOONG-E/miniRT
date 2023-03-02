@@ -5,7 +5,7 @@ void parse_ambi_light(char **info, t_meta *meta)
 {
 	check_available(meta, A);
 	meta->ambi.ratio = put_double(info[1], 0.0, 1.0);
-	meta->ambi.rgb = make_rgb(info[2]);
+	meta->ambi.rgb = vec_mul(make_rgb(info[2]), meta->ambi.ratio);
 	meta->flag |= 0b100;
 }
 
@@ -30,10 +30,10 @@ static t_light	*create_new_light(char **info, int count)
 	out->next = NULL;
 	if (count == 3)
 	{
-		out->color = init_vec(1, 1, 1);
+		out->color = init_vec(out->ratio, out->ratio, out->ratio);
 		return (out);
 	}
-	out->color = make_rgb(info[3]);
+	out->color = vec_mul(make_rgb(info[3]), out->ratio);
 	return (out);
 }
 
