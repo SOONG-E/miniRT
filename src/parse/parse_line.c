@@ -11,8 +11,8 @@ static void recognize_object(char **info, t_meta *meta)
 		parse_ambi_light(info, meta);
 	else if (ft_strcmp(info[0], "C") == 0 && check_num_info(count, 4) == 0)
 		parse_camera(info, meta);
-	else if (ft_strcmp(info[0], "L") == 0 && check_num_info(count, 3) == 0)
-		parse_light(info, meta);
+	else if (ft_strcmp(info[0], "L") == 0)
+		parse_light(info, meta, count);
 	else if (ft_strcmp(info[0], "sp") == 0 && check_num_info(count, 4) == 0)
 		parse_sphere(info, meta);
 	else if (ft_strcmp(info[0], "pl") == 0 && check_num_info(count, 4) == 0)
@@ -34,6 +34,7 @@ static void create_meta(char *file_name, t_meta *meta)
 		ft_exit("system function fail");
 	meta->flag = 0;
 	meta->mode = -1;
+	meta->light = NULL;
 	meta->hits[SP] = hit_sphere;
 	meta->hits[PL] = hit_plane;
 	meta->hits[CY] = hit_cylinder;

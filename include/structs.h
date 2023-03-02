@@ -43,7 +43,9 @@ struct s_cam
 struct s_light
 {
 	t_vec	coor;
+	t_vec	color;
 	double	ratio;
+	t_light	*next;
 };
 
 struct s_cylin
@@ -85,7 +87,7 @@ struct s_meta
 	int		mode;
 	t_ambi	ambi;
 	t_cam	cam;
-	t_light	light;
+	t_light	*light;
 	t_obj	*objs;
 	t_mlx	mlx;
 	int		(*hits[3])(t_obj obj, t_ray ray, t_record *rec);

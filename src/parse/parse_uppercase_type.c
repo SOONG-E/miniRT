@@ -18,10 +18,41 @@ void parse_camera(char **info, t_meta *meta)
 	meta->flag |= 0b10;
 }
 
-void parse_light(char **info, t_meta *meta)
+static t_light	*create_new_light(char **info, int count)
 {
-	check_available(meta, L);
-	meta->light.coor = make_coor(info[1], 0, 0);
-	meta->light.ratio = put_double(info[2], 0.0, 1.0);
-	meta->flag |= 0b1;
+	t_light *out;
+
+	out = (t_light *)malloc(sizeof(t_light));
+	if (out == NULL)
+		ft_exit("system function fail");
+	out->coor = make_coor(info[1], 0, 0);
+	out->ratio = put_double(info[2], 0.0, 1.0);
+	out->next = NULL;
+	if (count == 3)
+	{
+		out->color = init_vec(1, 1, 1);
+		return (out);
+	}
+	out->color = make_rgb(info[3]);
+	return (out);
+}
+
+static void	add_new_light(char **info, t_light *head, int count)
+{
+	while (head->next != NULL)
+		head = head->next;
+	head->next = create_new_light(info, count);
+}
+
+void parse_light(char **info, t_meta *meta, int count)
+{
+	if (count != 3 && count != 4)
+		ft_exit("check num of information");
+	if (meta->light == NULL)
+	{
+		meta->light = create_new_light(info, count);
+		meta->flag |= 0b1;
+		return ;
+	}
+	add_new_light(info, meta->light, count);
 }

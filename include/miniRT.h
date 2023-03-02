@@ -87,6 +87,9 @@ double	length_squared(t_vec v1);
 t_vec	init_vec(double x, double y, double z);
 t_record	init_record(void);
 
+/* draw_shadow.c */
+int	light_shadow(t_meta meta, t_ray ray, t_light light);
+
 /*************/
 /*	manage	*/
 /************/
@@ -122,7 +125,7 @@ void 	parse_cylinder(char **info, t_meta *meta);
 /* parse_uppercase_type.c */
 void 	parse_ambi_light(char **info, t_meta *meta);
 void 	parse_camera(char **info, t_meta *meta);
-void 	parse_light(char **info, t_meta *meta);
+void 	parse_light(char **info, t_meta *meta, int count);
 
 /* parse_utils.c */
 void	check_file_name(char *file_name);
