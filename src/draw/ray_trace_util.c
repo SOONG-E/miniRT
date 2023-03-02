@@ -1,6 +1,6 @@
 #include "miniRT.h"
 
-static t_vec clamp(t_vec v, double min, double max)
+t_vec clamp(t_vec v, double min, double max)
 {
 	if (v.x < min)
 		v.x = min;
@@ -26,13 +26,9 @@ int	color_to_int(int t, t_vec pixel_color)
 
 t_vec	vec_min(t_vec a, t_vec b)
 {
-	(void)b;
 	t_vec	out;
 
-	out.x = 255;
-	out.y = 255;
-	out.z = 255;
-
+	out = b;
 	if (a.x < out.x)
 		out.x = a.x;
 	if (a.y < out.y)
