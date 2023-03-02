@@ -77,7 +77,7 @@ int	is_hit(t_meta meta, t_ray ray, t_record *rec)
 	idx = -1;
 	while (++idx < meta.obj_num)
 	{
-		if (meta.hits[meta.objs->type](meta.objs[idx], ray, rec) == TRUE)
+		if (meta.hits[meta.objs[idx].type](meta.objs[idx], ray, rec) == TRUE)
 			result = TRUE;
 	}
 	return result;
