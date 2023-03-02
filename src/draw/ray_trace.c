@@ -48,21 +48,16 @@ static void	pixel_put(t_mlx *mlx, t_meta meta)
 	t_vec	ll_corner;
 
 	w = vec_unit(vec_mul(meta.cam.vec, -1));
-	// w = vec_unit(vec_sub(meta.cam.coor, meta.cam.vec));
 	u = vec_unit(vec_cross(init_vec(0, 1, 0), w));
 	v = vec_cross(w, u);
-	printf("w : %f %f %f \nv : %f %f %f \nz : %f %f %f \n ", w.x, w.y , w.z, v.x, v.y, v.z, u.x, u.y, u.z);
 	bg.hori = vec_mul(u, VP_WIDTH); 
 	bg.verti = vec_mul(v, VP_HEIGHT);
 	ll_corner = get_lowerleft_corner(meta.cam.coor, bg, w);
 	put_color(mlx, meta, bg, ll_corner);
 }
 
-void	ray_tracing(t_meta meta)
+void	ray_tracing(t_meta *meta)
 {
-	t_mlx	mlx;
-
-	window_init(&mlx);
-	pixel_put(&mlx, meta);
-	open_screen(mlx);
+	pixel_put(&(meta->mlx), *meta);
+	mlx_put_image_to_window(meta->mlx.mlx_ptr, meta->mlx.win_ptr, meta->mlx.img.img_ptr, 0, 0);
 }

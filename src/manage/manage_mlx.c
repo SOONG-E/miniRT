@@ -47,13 +47,12 @@ static int	binding_key_events(int key, t_meta *meta)
 	return (TRUE);
 }
 
-void open_screen(t_mlx mlx, t_meta *meta)
+void open_screen(t_mlx *mlx, t_meta *meta)
 {
-	mlx_key_hook(mlx.win_ptr, binding_key_events, meta);
-	mlx_hook(mlx.win_ptr, 2, 1L << 0, &key_event, &mlx);
-	mlx_hook(mlx.win_ptr, 17, 0, &exit_hook, 0);
-	mlx_put_image_to_window(mlx.mlx_ptr, mlx.win_ptr, mlx.img.img_ptr, 0, 0);
-	mlx_loop(mlx.mlx_ptr);
+	mlx_key_hook(mlx->win_ptr, binding_key_events, meta);
+	mlx_hook(mlx->win_ptr, 2, 1L << 0, &key_event, meta);
+	mlx_hook(mlx->win_ptr, 17, 0, &exit_hook, meta);
+	mlx_loop(mlx->mlx_ptr);
 }
 
 void	window_init(t_mlx *mlx)

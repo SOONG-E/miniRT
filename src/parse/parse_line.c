@@ -37,6 +37,7 @@ static void create_meta(char *file_name, t_meta *meta)
 	meta->hits[SP] = hit_sphere;
 	meta->hits[PL] = hit_plane;
 	meta->hits[CY] = hit_cylinder;
+	window_init(&(meta->mlx));
 }
 
 static void	fill_objs(char *file_name, t_meta *meta)
