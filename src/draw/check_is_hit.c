@@ -29,7 +29,7 @@ int	hit_sphere(t_obj obj, t_ray ray, t_record *rec)
 	}
 	rec->t_max = root;
 	rec->p = ray_at(ray, root);
-	rec->normal = vec_div(vec_sub(rec->p, obj.coor), obj.ratio);
+	rec->normal = vec_unit(vec_sub(rec->p, obj.coor));
 	rec->albedo = obj.rgb;
 	front_face(ray, rec);
 	return (TRUE);
@@ -39,17 +39,16 @@ int	hit_plane(t_obj obj, t_ray ray, t_record *rec)
 {
 	float	root;
 
-	root = vec_dot(vec_sub(ray.coor, obj.coor), obj.vec) \
+	root = vec_dot(vec_sub(obj.coor, ray.coor), obj.vec) \
 		/ vec_dot(ray.unit_vec, obj.vec);
-	if (vec_dot(ray.unit_vec, obj.vec) < T_MIN)
+	if (fabs(vec_dot(ray.unit_vec, obj.vec)) < T_MIN)
 		return (FALSE);
 	if (root < T_MIN || rec->t_max < root)
 		return (FALSE);
-	printf("A");
 	rec->t_max = root;
 	rec->p = ray_at(ray, root);
 	rec->normal = obj.vec;
-	// front_face(ray, rec);
+	front_face(ray, rec);
 	rec->albedo = obj.rgb;
 	return (TRUE);
 }
