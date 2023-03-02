@@ -54,10 +54,8 @@ t_vec ray_at(t_ray ray, double t)
 
 t_vec	get_lowerleft_corner(t_vec origin, t_bg bg, t_vec w)
 {
-	// double	focal_length;
 	t_vec	corner;
 
-	// focal_length = cam.fov / 180.0;
 	corner = vec_sub(origin, vec_div(bg.hori, 2.0));
 	corner = vec_sub(corner, vec_div(bg.verti, 2.0));
 	corner = vec_sub(corner, w);
