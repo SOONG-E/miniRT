@@ -95,6 +95,8 @@ struct s_bg
 {
 	t_vec	hori;
 	t_vec	verti;
+	double	theta;
+	double	vp_height;
 };
 
 struct s_record

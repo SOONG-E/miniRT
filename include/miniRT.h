@@ -14,8 +14,6 @@
 
 # define	WIDTH		800
 # define	HEIGHT		WIDTH / (16.0 / 9.0)
-# define	VP_HEIGHT	2.0
-# define	VP_WIDTH	(16.0 / 9.0) * VP_HEIGHT
 
 # define	KEY_ESC			53
 # define	KEY_ARROW_LEFT	123
@@ -98,14 +96,15 @@ void	ft_exit(char *errmsg);
 
 /* manage_resource.c */
 void	ft_free_splitted(char **chars);
+void	free_objs(t_obj *objs);
 
 /* manage_keyhook.c */
-int		key_event(int key, t_mlx *mlx);
-int		exit_hook(void);
+int		key_event(int key, t_meta *meta);
+int		exit_hook(t_meta *meta);
 
 /* manage_mlx.c */
 void	put_pixel(t_mlx *mlx, int x, int y, int color);
-void	open_screen(t_mlx mlx, t_meta *meta);
+void	open_screen(t_mlx *mlx, t_meta *meta);
 void	window_init(t_mlx *mlx);
 
 /*************/
