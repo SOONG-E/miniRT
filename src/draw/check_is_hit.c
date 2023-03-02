@@ -26,10 +26,10 @@ int	hit_sphere(t_obj obj, t_ray ray, t_record *rec)
 	double	root;
 
 	oc = vec_sub(ray.coor, obj.coor);
-	a = vec_dot(ray.unit_vec, ray.unit_vec);
+	a = length_squared(ray.unit_vec);
 	half_b = vec_dot(oc, ray.unit_vec);
-	discriminant = half_b * half_b - a * (vec_dot(oc, oc) - (obj.ratio * obj.ratio));
-	if (discriminant < 0)
+	discriminant = half_b * half_b - a * (length_squared(oc) - (obj.ratio * obj.ratio));
+	if (discriminant < T_MIN)
 		return (FALSE);
 	root = (-half_b - sqrt(discriminant)) / a;
 	if (root < T_MIN || root > rec->t_max)
@@ -39,10 +39,10 @@ int	hit_sphere(t_obj obj, t_ray ray, t_record *rec)
 			return (FALSE);
 	}
 	rec->t_max = root;
-	rec->p = ray_at(ray, rec->t_max);
+	rec->p = ray_at(ray, root);
 	rec->normal = vec_div(vec_sub(rec->p, obj.coor), obj.ratio);
-	rec->albedo = obj.rgb;
 	front_face(ray, rec);
+	rec->albedo = obj.rgb;
 	return (TRUE);
 }
 
@@ -72,8 +72,8 @@ int	hit_cylinder(t_obj obj, t_ray ray, t_record *rec)
 	int	result;
 
 	result = FALSE;
-	result = hit_cylinder_cap(obj, ray, rec, obj.cylin.height / 2);
-	result = hit_cylinder_cap(obj, ray, rec, -(obj.cylin.height / 2));
+	result = hit_cylinder_cap(obj, ray, rec, obj.cylin.height);
+	result = hit_cylinder_cap(obj, ray, rec, -(obj.cylin.height));
 	result = hit_cylinder_side(obj, ray, rec);
 	return result;
 }

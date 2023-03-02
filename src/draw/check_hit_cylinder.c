@@ -11,14 +11,10 @@ int	hit_cylinder_cap(t_obj obj, t_ray ray, t_record *rec, double height)
 	center = vec_add(obj.coor, vec_mul(obj.vec, height));
 	root = vec_dot(vec_sub(center, ray.coor), obj.vec) / vec_dot(ray.unit_vec, obj.vec);
 	diameter = vec_length(vec_sub(center, ray_at(ray, root)));
-	// printf("%f %f\n", r, diameter);
 	if (fabs(r) < fabs(diameter))
 		return (FALSE);
-	// printf("B");
-	// printf("%f %f %f \n", center.x, center.y, center.z);
 	if (root < T_MIN || rec->t_max < root)
 		return (FALSE);
-	//printf("A");
 	rec->t_max = root;
 	rec->p = ray_at(ray, root);
 	rec->normal = obj.vec;

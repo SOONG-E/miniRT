@@ -64,6 +64,8 @@ int		cy_boundary(t_obj obj, t_vec at_point);
 t_vec	get_cylinder_normal(t_obj obj, t_vec at_point, double hit_height);
 int		hit_cylinder_side(t_obj obj, t_ray ray, t_record *rec);
 
+/* draw_shadow.c */
+int	light_shadow(t_meta meta, t_ray ray, t_light light);
 /*************/
 /*	vec		*/
 /************/
