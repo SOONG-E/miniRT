@@ -62,19 +62,6 @@ struct s_obj
 	t_cylin	cylin;
 };
 
-struct s_meta
-{
-	int		obj_num;
-	int		flag;
-	int		mode;
-	t_ambi	ambi;
-	t_cam	cam;
-	t_light	light;
-	t_obj	*objs;
-	int		(*hits[3])(t_obj obj, t_ray ray, t_record *rec);
-};
-
-
 struct s_img
 {
 	void	*img_ptr;
@@ -89,6 +76,19 @@ struct s_mlx
 	void	*mlx_ptr;
 	void	*win_ptr;
 	t_img	img;
+};
+
+struct s_meta
+{
+	int		obj_num;
+	int		flag;
+	int		mode;
+	t_ambi	ambi;
+	t_cam	cam;
+	t_light	light;
+	t_obj	*objs;
+	t_mlx	mlx;
+	int		(*hits[3])(t_obj obj, t_ray ray, t_record *rec);
 };
 
 struct s_bg
