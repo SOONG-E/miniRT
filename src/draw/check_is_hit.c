@@ -2,9 +2,8 @@
 
 void	front_face(t_ray ray, t_record *rec)
 {
-	if (vec_dot(ray.unit_vec, rec->normal) < 0.0)
-		return ;
-	rec->normal = vec_mul(rec->normal, -1);
+	if (0.0 < vec_dot(ray.unit_vec, rec->normal))
+		rec->normal = vec_mul(rec->normal, -1);
 }
 
 int	hit_sphere(t_obj obj, t_ray ray, t_record *rec)
@@ -18,7 +17,7 @@ int	hit_sphere(t_obj obj, t_ray ray, t_record *rec)
 	oc = vec_sub(ray.coor, obj.coor);
 	a = length_squared(ray.unit_vec);
 	half_b = vec_dot(oc, ray.unit_vec);
-	discriminant = half_b * half_b - a * (vec_dot(oc, oc) - (obj.ratio * obj.ratio));
+	discriminant = half_b * half_b - a * (length_squared(oc) - (obj.ratio * obj.ratio));
 	if (discriminant < 0)
 		return (FALSE);
 	root = (-half_b - sqrt(discriminant)) / a;
@@ -29,7 +28,7 @@ int	hit_sphere(t_obj obj, t_ray ray, t_record *rec)
 			return (FALSE);
 	}
 	rec->t_max = root;
-	rec->p = ray_at(ray, rec->t_max);
+	rec->p = ray_at(ray, root);
 	rec->normal = vec_div(vec_sub(rec->p, obj.coor), obj.ratio);
 	rec->albedo = obj.rgb;
 	front_face(ray, rec);
