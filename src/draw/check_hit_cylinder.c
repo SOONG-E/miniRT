@@ -62,17 +62,17 @@ int	hit_cylinder_side(t_obj obj, t_ray ray, t_record *rec)
 	if (discriminant < 0)
 		return (FALSE);
 	root = (-half_b - sqrt(discriminant)) / a;
-	if (root < T_MIN || root > rec->t_max)
+	if (root < T_MIN || rec->t_max < root)
 	{
 		root = (-half_b + sqrt(discriminant)) / a;
-		if (root < T_MIN || root > rec->t_max)
+		if (root < T_MIN || rec->t_max < root)
 			return (FALSE);
 	}
 	if (cy_boundary(obj, ray_at(ray, root)) == FALSE)
 		return (FALSE);
 	rec->t_max = root;
 	rec->p = ray_at(ray, root);
-	rec->normal = get_cylinder_normal(obj, rec->p, 1);
+	rec->normal = get_cylinder_normal(obj, rec->p, cy_boundary(obj, ray_at(ray, root)));
 	front_face(ray, rec);
 	rec->albedo = obj.rgb;
 	return (TRUE);

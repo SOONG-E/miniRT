@@ -9,6 +9,5 @@ int main(int ac, char **av)
 	parse_line(av[1], &meta);
 	ray_tracing(&meta);
 	open_screen(&(meta.mlx), &meta);
-	
 	return (0);
 }
