@@ -18,7 +18,7 @@ int	in_shadow(t_meta meta, t_ray light_ray, double light_len)
 	t_rec	rec;
 
 	rec.t_max = light_len;
-	if (is_hit(meta, light_ray, &rec) == TRUE)
+	if (is_hit_light(meta, light_ray, &rec) == TRUE)
 		return (TRUE);
 	return (FALSE);
 }

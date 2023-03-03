@@ -64,7 +64,6 @@ int		hit_cylinder_cap(t_obj obj, t_ray ray, t_rec *rec, double height);
 int		hit_cylinder_side(t_obj obj, t_ray ray, t_rec *rec);
 
 /* draw_shadow.c */
-int		is_hit_light(t_meta meta, t_ray ray, t_rec *rec);
 int		in_shadow(t_meta meta, t_ray light_ray, double light_len);
 
 /*************/
