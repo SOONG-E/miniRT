@@ -25,7 +25,7 @@ t_vec	make_coor(char *info, double min, double max)
 	return (ret);
 }
 
-t_vec	make_vec(char *info, double	min, double max)
+t_vec	make_vec(char *info, double min, double max)
 {
 	t_vec	ret;
 
@@ -46,7 +46,7 @@ t_vec	make_rgb(char *info)
 	ret.y = put_double(nums[1], 0, 255);
 	ret.z = put_double(nums[2], 0, 255);
 	if (((int)ret.x | 255) != 255 || ((int)ret.y | 255) != 255
-	|| ((int)ret.z | 255) != 255)
+		|| ((int)ret.z | 255) != 255)
 		ft_exit("rgb is out of range!");
 	ret.x /= 255.0;
 	ret.y /= 255.0;

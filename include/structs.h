@@ -1,23 +1,28 @@
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
-typedef enum	e_type		t_type;
-typedef struct	s_obj		t_obj;
-typedef struct	s_cam		t_cam;
-typedef struct	s_light		t_light;
-typedef struct	s_vec		t_vec;
-typedef struct	s_cylin		t_cylin;
-typedef struct	s_ambi		t_ambi;
-typedef	struct	s_meta		t_meta;
-typedef	struct	s_img		t_img;
-typedef	struct	s_mlx		t_mlx;
-typedef	struct	s_bg		t_bg;
-typedef struct	s_record	t_record;
-typedef struct	s_ray		t_ray;
+typedef enum e_type			t_type;
+typedef struct s_obj		t_obj;
+typedef struct s_cam		t_cam;
+typedef struct s_light		t_light;
+typedef struct s_vec		t_vec;
+typedef struct s_cylin		t_cylin;
+typedef struct s_ambi		t_ambi;
+typedef struct s_meta		t_meta;
+typedef struct s_img		t_img;
+typedef struct s_mlx		t_mlx;
+typedef struct s_bg			t_bg;
+typedef struct s_rec		t_rec;
+typedef struct s_ray		t_ray;
 
 enum e_type
 {
-	SP, PL, CY, A, C, L
+	SP,
+	PL,
+	CY,
+	A,
+	C,
+	L
 };
 
 struct s_vec
@@ -90,7 +95,7 @@ struct s_meta
 	t_light	*light;
 	t_obj	*objs;
 	t_mlx	mlx;
-	int		(*hits[3])(t_obj obj, t_ray ray, t_record *rec);
+	int		(*hits[3])(t_obj obj, t_ray ray, t_rec *rec);
 };
 
 struct s_bg
@@ -111,10 +116,9 @@ struct s_record
 
 struct s_ray
 {
-	t_vec		coor;
-	t_vec		unit_vec;
-	t_record	rec;
+	t_vec	coor;
+	t_vec	unit_vec;
+	t_rec	rec;
 };
-
 
 #endif

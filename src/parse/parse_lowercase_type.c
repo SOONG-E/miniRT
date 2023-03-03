@@ -1,8 +1,8 @@
 #include "miniRT.h"
 
-void parse_sphere(char **info, t_meta *meta)
+void	parse_sphere(char **info, t_meta *meta)
 {
-	int idx;
+	int	idx;
 
 	idx = get_index(meta);
 	meta->objs[idx].type = SP;
@@ -11,9 +11,9 @@ void parse_sphere(char **info, t_meta *meta)
 	meta->objs[idx].rgb = make_rgb(info[3]);
 }
 
-void parse_plane(char **info, t_meta *meta)
+void	parse_plane(char **info, t_meta *meta)
 {
-	int idx;
+	int	idx;
 
 	idx = get_index(meta);
 	meta->objs[idx].type = PL;
@@ -22,9 +22,9 @@ void parse_plane(char **info, t_meta *meta)
 	meta->objs[idx].rgb = make_rgb(info[3]);
 }
 
-void parse_cylinder(char **info, t_meta *meta)
+void	parse_cylinder(char **info, t_meta *meta)
 {
-	int idx;
+	int	idx;
 
 	idx = get_index(meta);
 	meta->objs[idx].type = CY;

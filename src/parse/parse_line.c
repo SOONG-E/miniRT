@@ -1,6 +1,6 @@
 #include "miniRT.h"
 
-static void recognize_object(char **info, t_meta *meta)
+static void	recognize_object(char **info, t_meta *meta)
 {
 	int	count;
 
@@ -24,7 +24,7 @@ static void recognize_object(char **info, t_meta *meta)
 	ft_free_splitted(info);
 }
 
-static void create_meta(char *file_name, t_meta *meta)
+static void	create_meta(char *file_name, t_meta *meta)
 {
 	meta->obj_num = count_objects(file_name) - 3;
 	if (meta->obj_num < 0)

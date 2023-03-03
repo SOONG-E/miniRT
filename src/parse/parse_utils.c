@@ -11,7 +11,7 @@ void	check_file_name(char *file_name)
 		ft_exit("miniRT need exist \".rt\" file.");
 }
 
-int count_objects(char *file_name)
+int	count_objects(char *file_name)
 {
 	int		fd;
 	char	*temp;
@@ -53,7 +53,7 @@ int	check_num_info(int count, int stand)
 
 int	get_index(t_meta *meta)
 {
-	int ret;
+	int	ret;
 
 	ret = (meta->flag >> 3);
 	meta->flag += 1 << 3;

@@ -17,7 +17,7 @@ double	vec_length(t_vec v1)
 
 t_vec	vec_cal(t_vec *v, double *a, int n)
 {
-	t_vec out;
+	t_vec	out;
 
 	out = init_vec(0, 0, 0);
 	while (n--)
@@ -29,7 +29,7 @@ t_vec	vec_cal(t_vec *v, double *a, int n)
 	return (out);
 }
 
-double vec_dot(t_vec v1, t_vec v2)
+double	vec_dot(t_vec v1, t_vec v2)
 {
 	return (v1.x * v2.x + v1.y * v2.y + v1.z * v2.z);
 }

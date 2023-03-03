@@ -20,13 +20,13 @@ t_vec	point_light_get(t_meta meta, t_ray ray, t_light *light)
 	double	kd;
 
 	light_dir = vec_sub(light->coor, ray.rec.p);
-	light_ray = init_ray(vec_add(ray.rec.p, vec_mul(ray.rec.normal, T_MIN)), light_dir);
+	light_ray = init_ray(vec_add(ray.rec.p, \
+				vec_mul(ray.rec.normal, T_MIN)), light_dir);
 	if (in_shadow(meta, light_ray, vec_length(light_dir)) == TRUE)
 		return (init_vec(0, 0, 0));
 	light_dir = vec_unit(light_dir);
 	kd = fmax(vec_dot(ray.rec.normal, light_dir), 0.0);
 	diffuse = vec_mul(light->color, kd);
-
 	return (diffuse);
 }
 

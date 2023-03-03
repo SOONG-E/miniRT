@@ -1,4 +1,4 @@
-int ft_count_array(char **strs)
+int	ft_count_array(char **strs)
 {
 	int	count;
 
