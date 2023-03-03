@@ -63,6 +63,9 @@ t_vec	get_lowerleft_corner(t_vec origin, t_bg bg, t_vec w);
 int		hit_cylinder_cap(t_obj obj, t_ray ray, t_record *rec, double height);
 int		hit_cylinder_side(t_obj obj, t_ray ray, t_record *rec);
 
+/* draw_shadow.c */
+int	light_shadow(t_meta meta, t_ray ray, t_light light);
+
 /*************/
 /*	vec		*/
 /************/

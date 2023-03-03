@@ -23,13 +23,14 @@ SRCS = \
 		src/parse/parse_put_info.c			\
 		src/vec/calculate_basic_vec.c		\
 		src/vec/calculate_vec.c				\
-		src/vec/calculate_util.c        	\
+		src/vec/calculate_util.c			\
 		src/vec/init_attr.c					\
 		src/draw/ray_trace.c				\
 		src/draw/ray_trace_util.c			\
 		src/draw/check_is_hit.c				\
 		src/draw/check_hit_cylinder.c		\
-		src/draw/phong_lighting.c
+		src/draw/draw_light.c				\
+		src/draw/draw_shadow.c				\
 		
 Q = @
 ifdef DEBUG
