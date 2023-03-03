@@ -29,7 +29,7 @@
 # define	TRUE	0
 # define	FALSE	1
 
-# define	T_MIN	1e-8
+# define	T_MIN	1e-6
 
 /*************/
 /*	draw	*/
@@ -64,7 +64,8 @@ int		hit_cylinder_cap(t_obj obj, t_ray ray, t_record *rec, double height);
 int		hit_cylinder_side(t_obj obj, t_ray ray, t_record *rec);
 
 /* draw_shadow.c */
-int	light_shadow(t_meta meta, t_ray ray, t_light light);
+int		is_hit_light(t_meta meta, t_ray ray, t_record *rec);
+int		in_shadow(t_meta meta, t_ray light_ray, double light_len);
 
 /*************/
 /*	vec		*/
@@ -89,6 +90,7 @@ double	length_squared(t_vec v1);
 
 /* init_vec.c */
 t_vec	init_vec(double x, double y, double z);
+t_ray	init_ray(t_vec coor, t_vec	unit_vec);
 t_record	init_record(void);
 
 /* draw_shadow.c */

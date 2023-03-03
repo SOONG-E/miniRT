@@ -106,14 +106,14 @@ struct s_record
 	t_vec	p;
 	t_vec	normal;
 	double	t_max;
-	t_vec	albedo;
+	t_obj	obj;
 };
 
 struct s_ray
 {
 	t_vec		coor;
 	t_vec		unit_vec;
-	t_record	obj_draw;
+	t_record	rec;
 };
 
 
