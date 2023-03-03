@@ -1,35 +1,24 @@
 #include "miniRT.h"
 
-int	in_shadow(t_meta meta, t_ray light_ray, double light_len)
+int is_hit_light(t_meta meta, t_ray ray, t_record *rec)
 {
-	t_record	rec;
-	int	result;
-	int	idx;
+	int idx;
 
-	rec.t_max = light_len;
-	result = FALSE;
 	idx = -1;
 	while (++idx < meta.obj_num)
 	{
-		if (meta.objs[idx].type == 1)
-			continue;
-		if (meta.hits[meta.objs[idx].type](meta.objs[idx], light_ray, &rec) == TRUE)
-			result = TRUE;
+		if (meta.hits[meta.objs[idx].type](meta.objs[idx], ray, rec) == TRUE)
+			return TRUE;
 	}
-	return result;
+	return FALSE;
 }
 
-int	light_shadow(t_meta meta, t_ray ray, t_light light)
+int	in_shadow(t_meta meta, t_ray light_ray, double light_len)
 {
-	t_vec	light_dir;
-	double	light_len;
-	t_ray	light_ray;
+	t_record	rec;
 
-	light_dir = vec_sub(light.coor, ray.rec.p);
-	light_len = vec_length(light_dir);
-	light_ray.coor = vec_add(ray.rec.p, vec_mul(ray.rec.normal, T_MIN));
-	light_ray.unit_vec = light_dir;
-	if (in_shadow(meta, light_ray, light_len) == TRUE)
-		return (TRUE);
-	return (FALSE);
+	rec.t_max = light_len;
+	if (is_hit(meta, light_ray, &rec) == TRUE)
+		return TRUE;
+	return FALSE;
 }
