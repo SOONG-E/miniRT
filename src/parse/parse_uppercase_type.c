@@ -1,7 +1,7 @@
 #include "miniRT.h"
 #include <stdio.h>
 
-void parse_ambi_light(char **info, t_meta *meta)
+void	parse_ambi_light(char **info, t_meta *meta)
 {
 	check_available(meta, A);
 	meta->ambi.ratio = put_double(info[1], 0.0, 1.0);
@@ -9,7 +9,7 @@ void parse_ambi_light(char **info, t_meta *meta)
 	meta->flag |= 0b100;
 }
 
-void parse_camera(char **info, t_meta *meta)
+void	parse_camera(char **info, t_meta *meta)
 {
 	check_available(meta, C);
 	meta->cam.coor = make_coor(info[1], 0, 0);
@@ -20,7 +20,7 @@ void parse_camera(char **info, t_meta *meta)
 
 static t_light	*create_new_light(char **info, int count)
 {
-	t_light *out;
+	t_light	*out;
 
 	out = (t_light *)malloc(sizeof(t_light));
 	if (out == NULL)
@@ -44,7 +44,7 @@ static void	add_new_light(char **info, t_light *head, int count)
 	head->next = create_new_light(info, count);
 }
 
-void parse_light(char **info, t_meta *meta, int count)
+void	parse_light(char **info, t_meta *meta, int count)
 {
 	if (count != 3 && count != 4)
 		ft_exit("check num of information");

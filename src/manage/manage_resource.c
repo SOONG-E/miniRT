@@ -12,8 +12,8 @@ void	ft_free_splitted(char **chars)
 
 void	free_resources(t_meta *meta)
 {
-	t_light *head;
-	t_light *temp;
+	t_light	*head;
+	t_light	*temp;
 
 	free(meta->objs);
 	head = meta->light;
