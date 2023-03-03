@@ -23,7 +23,7 @@ SRCS = \
 		src/parse/parse_put_info.c			\
 		src/vec/calculate_basic_vec.c		\
 		src/vec/calculate_vec.c				\
-		src/vec/calculate_util.c        	\
+		src/vec/calculate_util.c			\
 		src/vec/init_attr.c					\
 		src/draw/ray_trace.c				\
 		src/draw/ray_trace_util.c			\

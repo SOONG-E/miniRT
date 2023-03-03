@@ -48,6 +48,12 @@ t_vec	phong_lighting(t_meta meta, t_ray ray)
 	light = meta.light;
 	while (light)
 	{
+		if (light_shadow(meta, ray, *light) == TRUE)
+			return (init_vec(0, 0, 0));
+		light = light->next;
+	}
+	while (light)
+	{
 		light_color = vec_add(light_color, point_light_get(ray, light));
 		light_color = vec_add(light_color, get_specular(ray, light));
 		light = light->next;
