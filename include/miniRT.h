@@ -21,7 +21,7 @@
 # define 	KEY_ARROW_DOWN	125
 # define	KEY_ARROW_UP	126
 # define	KEY_C			8
-# define	KEY_L			37
+# define	KEY_D			2
 # define	KEY_Z			6
 # define	KEY_SHIFT		257
 # define	KEY_CTRL		256
@@ -53,6 +53,7 @@ t_vec	phong_lighting(t_meta meta, t_ray ray);
 void	ray_tracing(t_meta *meta);
 
 /* ray_trace_util.c */
+t_vec	clamp(t_vec v, double min, double max);
 int		color_to_int(int t, t_vec pixel_color);
 t_vec	vec_min(t_vec a, t_vec b);
 t_vec 	ray_at(t_ray ray, double t);
@@ -99,11 +100,12 @@ void	ft_exit(char *errmsg);
 
 /* manage_resource.c */
 void	ft_free_splitted(char **chars);
-void	free_objs(t_obj *objs);
+void	free_resources(t_meta *meta);
 
 /* manage_keyhook.c */
 int		key_event(int key, t_meta *meta);
 int		exit_hook(t_meta *meta);
+int		binding_key_events(int key, t_meta *meta);
 
 /* manage_mlx.c */
 void	put_pixel(t_mlx *mlx, int x, int y, int color);
