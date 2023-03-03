@@ -43,7 +43,7 @@ int	hit_cylinder_cap(t_obj obj, t_ray ray, t_record *rec, double height)
 	if (height <= 0)
 		rec->normal = vec_mul(rec->normal, -1);
 	front_face(ray, rec);
-	rec->albedo = obj.rgb;
+	rec->obj = obj;
 	return (TRUE);
 }
 
@@ -74,6 +74,6 @@ int	hit_cylinder_side(t_obj obj, t_ray ray, t_record *rec)
 	rec->p = ray_at(ray, root);
 	rec->normal = get_cylinder_normal(obj, rec->p, cy_boundary(obj, ray_at(ray, root)));
 	front_face(ray, rec);
-	rec->albedo = obj.rgb;
+	rec->obj = obj;
 	return (TRUE);
 }

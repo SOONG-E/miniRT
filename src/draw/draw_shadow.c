@@ -25,9 +25,9 @@ int	light_shadow(t_meta meta, t_ray ray, t_light light)
 	double	light_len;
 	t_ray	light_ray;
 
-	light_dir = vec_sub(light.coor, ray.obj_draw.p);
+	light_dir = vec_sub(light.coor, ray.rec.p);
 	light_len = vec_length(light_dir);
-	light_ray.coor = vec_add(ray.obj_draw.p, vec_mul(ray.obj_draw.normal, T_MIN));
+	light_ray.coor = vec_add(ray.rec.p, vec_mul(ray.rec.normal, T_MIN));
 	light_ray.unit_vec = light_dir;
 	if (in_shadow(meta, light_ray, light_len) == TRUE)
 		return (TRUE);

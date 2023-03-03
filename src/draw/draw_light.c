@@ -16,10 +16,12 @@ t_vec	point_light_get(t_ray ray, t_light *light)
 {
 	t_vec	diffuse;
 	t_vec	light_dir;
+	// t_ray	light_ray;
 	double	kd;
 
-	light_dir = vec_unit(vec_sub(light->coor, ray.obj_draw.p));
-	kd = fmax(vec_dot(ray.obj_draw.normal, light_dir), 0.0);
+	light_dir = vec_unit(vec_sub(light->coor, ray.rec.p));
+	// light_ray = init_ray(, light_dir);
+	kd = fmax(vec_dot(ray.rec.normal, light_dir), 0.0);
 	diffuse = vec_mul(light->color, kd);
 
 	return (diffuse);
@@ -32,9 +34,9 @@ t_vec	get_specular(t_ray ray, t_light *light)
 	t_vec	light_dir;
 	double	spec;
 
-	light_dir = vec_unit(vec_sub(light->coor, ray.obj_draw.p));
+	light_dir = vec_unit(vec_sub(light->coor, ray.rec.p));
 	view_dir = vec_unit(vec_mul(ray.unit_vec, -1));
-	reflect_dir = reflect(light_dir, ray.obj_draw.normal);
+	reflect_dir = reflect(light_dir, ray.rec.normal);
 	spec = pow(fmax(vec_dot(view_dir, reflect_dir), 0.0), 50);
 	return (vec_mul(vec_mul(light->color, 0.9), spec));
 }
@@ -42,16 +44,19 @@ t_vec	get_specular(t_ray ray, t_light *light)
 t_vec	phong_lighting(t_meta meta, t_ray ray)
 {
 	t_vec	light_color;
+	t_light	*temp;
 	t_light	*light;
 
 	light_color = init_vec(0, 0, 0);
-	light = meta.light;
+	temp = meta.light;
+	light = temp;
 	while (light)
 	{
 		if (light_shadow(meta, ray, *light) == TRUE)
-			return (init_vec(0, 0, 0));
+			return (init_vec(0.01, 0.01, 0.01));
 		light = light->next;
 	}
+	light = temp;
 	while (light)
 	{
 		light_color = vec_add(light_color, point_light_get(ray, light));
@@ -59,5 +64,5 @@ t_vec	phong_lighting(t_meta meta, t_ray ray)
 		light = light->next;
 	}
 	light_color = vec_add(light_color, meta.ambi.rgb);
-	return (vec_min(vecs_mul(light_color, ray.obj_draw.albedo), init_vec(1, 1, 1)));
+	return (vec_min(vecs_mul(light_color, ray.rec.obj.rgb), init_vec(1, 1, 1)));
 }

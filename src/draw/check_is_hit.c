@@ -30,7 +30,7 @@ int hit_sphere(t_obj obj, t_ray ray, t_record *rec)
 	rec->t_max = root;
 	rec->p = ray_at(ray, root);
 	rec->normal = vec_unit(vec_sub(rec->p, obj.coor));
-	rec->albedo = obj.rgb;
+	rec->obj = obj;
 	front_face(ray, rec);
 	return (TRUE);
 }
@@ -48,7 +48,7 @@ int hit_plane(t_obj obj, t_ray ray, t_record *rec)
 	rec->p = ray_at(ray, root);
 	rec->normal = obj.vec;
 	front_face(ray, rec);
-	rec->albedo = obj.rgb;
+	rec->obj = obj;
 	return (TRUE);
 }
 
