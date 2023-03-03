@@ -1,18 +1,18 @@
 #include "miniRT.h"
 
-void	front_face(t_ray ray, t_record *rec)
+void front_face(t_ray ray, t_record *rec)
 {
 	if (0.0 < vec_dot(ray.unit_vec, rec->normal))
 		rec->normal = vec_mul(rec->normal, -1);
 }
 
-int	hit_sphere(t_obj obj, t_ray ray, t_record *rec)
+int hit_sphere(t_obj obj, t_ray ray, t_record *rec)
 {
-	t_vec	oc;
-	double	a;
-	double	half_b;
-	double	discriminant;
-	double	root;
+	t_vec oc;
+	double a;
+	double half_b;
+	double discriminant;
+	double root;
 
 	oc = vec_sub(ray.coor, obj.coor);
 	a = length_squared(ray.unit_vec);
@@ -35,12 +35,11 @@ int	hit_sphere(t_obj obj, t_ray ray, t_record *rec)
 	return (TRUE);
 }
 
-int	hit_plane(t_obj obj, t_ray ray, t_record *rec)
+int hit_plane(t_obj obj, t_ray ray, t_record *rec)
 {
-	float	root;
+	float root;
 
-	root = vec_dot(vec_sub(obj.coor, ray.coor), obj.vec) \
-		/ vec_dot(ray.unit_vec, obj.vec);
+	root = vec_dot(vec_sub(obj.coor, ray.coor), obj.vec) / vec_dot(ray.unit_vec, obj.vec);
 	if (fabs(vec_dot(ray.unit_vec, obj.vec)) < T_MIN)
 		return (FALSE);
 	if (root < T_MIN || rec->t_max < root)
@@ -53,9 +52,9 @@ int	hit_plane(t_obj obj, t_ray ray, t_record *rec)
 	return (TRUE);
 }
 
-int	hit_cylinder(t_obj obj, t_ray ray, t_record *rec)
+int hit_cylinder(t_obj obj, t_ray ray, t_record *rec)
 {
-	int	result;
+	int result;
 
 	result = 0;
 	result += hit_cylinder_cap(obj, ray, rec, obj.cylin.height / 2);
@@ -66,10 +65,10 @@ int	hit_cylinder(t_obj obj, t_ray ray, t_record *rec)
 	return FALSE;
 }
 
-int	is_hit(t_meta meta, t_ray ray, t_record *rec)
+int is_hit(t_meta meta, t_ray ray, t_record *rec)
 {
-	int	result;
-	int	idx;
+	int result;
+	int idx;
 
 	result = FALSE;
 	idx = -1;

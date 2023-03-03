@@ -11,10 +11,10 @@ int	in_shadow(t_meta meta, t_ray light_ray, double light_len)
 	idx = -1;
 	while (++idx < meta.obj_num)
 	{
+		if (meta.objs[idx].type == 1)
+			continue;
 		if (meta.hits[meta.objs[idx].type](meta.objs[idx], light_ray, &rec) == TRUE)
-		{
 			result = TRUE;
-		}
 	}
 	return result;
 }
