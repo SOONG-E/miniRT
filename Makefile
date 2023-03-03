@@ -29,8 +29,9 @@ SRCS = \
 		src/draw/ray_trace_util.c			\
 		src/draw/check_is_hit.c				\
 		src/draw/check_hit_cylinder.c		\
-		src/draw/phong_lighting.c
-		
+		src/draw/draw_light.c				\
+		src/draw/draw_shadow.c				\
+
 Q = @
 ifdef DEBUG
 	Q = 
