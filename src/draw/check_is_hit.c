@@ -2,7 +2,7 @@
 
 void	front_face(t_ray ray, t_rec *rec)
 {
-	if (0.0 < vec_dot(ray.unit_vec, rec->normal))
+	if (0.0 <= vec_dot(ray.unit_vec, rec->normal))
 		rec->normal = vec_mul(rec->normal, -1);
 }
 
