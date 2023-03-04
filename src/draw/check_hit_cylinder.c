@@ -1,25 +1,24 @@
 #include "miniRT.h"
 
-static int	cy_boundary(t_obj obj, t_vec at_point)
+static double	cy_boundary(t_obj obj, t_vec at_point)
 {
-	double	hit_height;
-	double	max_height;
+	double	len;
 
-	hit_height = vec_dot(vec_sub(at_point, obj.coor), obj.vec);
-	max_height = obj.cylin.height / 2;
-	if (fabs(hit_height) > max_height)
-		return (FALSE);
-	return (TRUE);
+	len = sqrt(pow(obj.cylin.diameter / 2, 2.0) + pow(obj.cylin.height / 2, 2.0));
+	if (len < vec_length(vec_sub(obj.coor, at_point)))
+		return FALSE;
+	return TRUE;
 }
 
-static t_vec	get_normal(t_obj obj, t_vec at_point, double height)
+static t_vec	get_normal(t_obj obj, t_vec at_point)
 {
-	t_vec	hit_center;
+	t_vec	temp;
 	t_vec	normal;
 
-	hit_center = vec_add(obj.coor, vec_mul(obj.vec, height));
-	normal = vec_sub(at_point, hit_center);
-	return (vec_unit(normal));
+	temp = vec_sub(at_point, obj.coor);
+	normal = vec_sub(temp, vec_mul(obj.vec, vec_dot(obj.vec, temp)));
+	normal = vec_unit(normal);
+	return normal;
 }
 
 int	hit_cylinder_cap(t_obj obj, t_ray ray, t_rec *rec, double height)
@@ -75,7 +74,7 @@ int	hit_cylinder_side(t_obj obj, t_ray ray, t_rec *rec)
 		return (FALSE);
 	rec->t_max = root;
 	rec->p = ray_at(ray, root);
-	rec->normal = get_normal(obj, rec->p, cy_boundary(obj, ray_at(ray, root)));
+	rec->normal = get_normal(obj, rec->p);
 	front_face(ray, rec);
 	rec->obj = obj;
 	return (TRUE);
