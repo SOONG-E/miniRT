@@ -6,6 +6,8 @@ t_vec	vec_unit(t_vec v)
 
 	if (v.x == 0 && v.y == 0 && v.z == 0)
 		printf("0 vector error\n");
+	if (len == 0)
+		printf("vec_unit error");
 	len = vec_length(v);
 	return (init_vec(v.x / len, v.y / len, v.z / len));
 }

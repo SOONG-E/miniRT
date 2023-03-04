@@ -54,16 +54,36 @@ int	hit_plane(t_obj obj, t_ray ray, t_rec *rec)
 	return (TRUE);
 }
 
+/* int	hit_cylinder(t_obj obj, t_ray ray, t_rec *rec)
+{
+	int	result;
+
+	result = 0;
+	result += hit_cylinder_cap(obj, ray, rec, (obj.cylin.height / 2));
+	obj.cylin.top_center = vec_add(obj.coor, vec_mul(obj.vec, obj.cylin.height));
+	result += hit_cylinder_cap(obj, ray, rec, -(obj.cylin.height / 2));
+	obj.cylin.bottom_center = vec_add(obj.coor, vec_mul(obj.vec, -(obj.cylin.height)));
+	result += hit_cylinder_side(obj, ray, rec);
+	if (result > 3)
+		return (TRUE);
+	return (FALSE);
+}
+ */
+
 int	hit_cylinder(t_obj obj, t_ray ray, t_rec *rec)
 {
 	int	result;
 
 	result = 0;
-	result += hit_cylinder_cap(obj, ray, rec, obj.cylin.height / 2);
-	result += hit_cylinder_cap(obj, ray, rec, -(obj.cylin.height / 2));
-	result += hit_cylinder_side(obj, ray, rec);
-	if (result < 3)
-		return (TRUE);
+	result = hit_cylinder_side(obj, ray, rec);
+	if (result == TRUE)
+		return (result);
+	result = hit_cylinder_cap(obj, ray, rec, (obj.cylin.height / 2));
+	if (result == TRUE)
+		return (result);
+	result = hit_cylinder_cap(obj, ray, rec, -(obj.cylin.height / 2));
+	if (result == TRUE)
+		return (result);
 	return (FALSE);
 }
 

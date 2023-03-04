@@ -57,6 +57,8 @@ struct s_cylin
 {
 	double	diameter;
 	double	height;
+	t_vec	top_center;
+	t_vec	bottom_center;
 };
 
 struct s_obj

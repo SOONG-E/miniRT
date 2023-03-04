@@ -28,11 +28,11 @@ static void	put_color(t_mlx *mlx, t_meta meta, t_bg bg, t_vec ll_corner)
 		while (i < WIDTH)
 		{
 			u = (double)i / (WIDTH - 1);
-			v = 1.0 - ((double)j / (HEIGHT - 1));
+			v = ((double)j / (HEIGHT - 1));
 			r.unit_vec = vec_sub(vec_add(vec_add(ll_corner, \
 						vec_mul(bg.hori, u)), vec_mul(bg.verti, v)), r.coor);
 			r.unit_vec = vec_unit(r.unit_vec);
-			put_pixel(mlx, i, j, ray_color(r, meta));
+			put_pixel(mlx, i, HEIGHT - 1 - j, ray_color(r, meta));
 			++i;
 		}
 		++j;
