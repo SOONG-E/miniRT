@@ -194,7 +194,7 @@ int	mlx_int_get_col_name(char *str,int size)
   return (result);
 }
 
-int	mlx_int_get_text_rgb(char *name, char *end)
+int	mlx_int_get_text_vec(char *name, char *end)
 {
   int	i;
   char	buff[64];
@@ -284,7 +284,7 @@ void	*mlx_int_parse_xpm(void *xvar,void *info,int info_size,char *(*f)(), int *w
       if (!tab[j])
 	RETURN;
 
-      rgb_col = mlx_int_get_text_rgb(tab[j], tab[j+1]);
+      rgb_col = mlx_int_get_text_vec(tab[j], tab[j+1]);
       if (method)
 	colors_direct[mlx_int_get_col_name(line,cpp)] = rgb_col;
       else
