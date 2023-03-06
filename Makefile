@@ -6,7 +6,7 @@
 #    By: yujelee <yujelee@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/06 16:30:08 by yujelee           #+#    #+#              #
-#    Updated: 2023/03/06 16:30:09 by yujelee          ###   ########seoul.kr   #
+#    Updated: 2023/03/06 16:54:19 by yujelee          ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ SRCS = \
 		src/vec/calculate_vec.c				\
 		src/vec/calculate_util.c			\
 		src/vec/init_attr.c					\
+		src/vec/rotate_vec.c				\
 		src/draw/ray_trace.c				\
 		src/draw/ray_trace_util.c			\
 		src/draw/check_is_hit.c				\
