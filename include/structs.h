@@ -1,19 +1,20 @@
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
-typedef enum e_type			t_type;
-typedef struct s_obj		t_obj;
-typedef struct s_cam		t_cam;
-typedef struct s_light		t_light;
-typedef struct s_vec		t_vec;
-typedef struct s_cylin		t_cylin;
-typedef struct s_ambi		t_ambi;
-typedef struct s_meta		t_meta;
-typedef struct s_img		t_img;
-typedef struct s_mlx		t_mlx;
-typedef struct s_bg			t_bg;
-typedef struct s_rec		t_rec;
-typedef struct s_ray		t_ray;
+typedef enum e_type				t_type;
+typedef struct s_obj			t_obj;
+typedef struct s_cam			t_cam;
+typedef struct s_light			t_light;
+typedef struct s_vec			t_vec;
+typedef struct s_cylin			t_cylin;
+typedef struct s_ambi			t_ambi;
+typedef struct s_meta			t_meta;
+typedef struct s_img			t_img;
+typedef struct s_mlx			t_mlx;
+typedef struct s_bg				t_bg;
+typedef struct s_rec			t_rec;
+typedef struct s_ray			t_ray;
+typedef struct s_discriminant	t_discriminant;
 
 enum e_type
 {
@@ -120,5 +121,15 @@ struct s_ray
 	t_vec	unit_vec;
 	t_rec	rec;
 };
+
+struct s_discriminant
+{
+	double	a;
+	double	b;
+	double	c;
+	double	disc;
+	double	sqrtd;
+};
+
 
 #endif
