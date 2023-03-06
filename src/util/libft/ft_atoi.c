@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sangmipa <sangmipa@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: yujelee <yujelee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 11:15:19 by sangmipa          #+#    #+#             */
-/*   Updated: 2022/07/20 13:00:07 by sangmipa         ###   ########seoul.kr  */
+/*   Updated: 2023/03/06 16:29:46 by yujelee          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
