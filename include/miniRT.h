@@ -92,8 +92,12 @@ t_vec	init_vec(double x, double y, double z);
 t_ray	init_ray(t_vec coor, t_vec	unit_vec);
 t_rec	init_rec(void);
 
-/* draw_shadow.c */
-int		in_shadow(t_meta meta, t_ray light_ray, double light_len);
+/* rotate_vec.c */
+double	degree_to_radian(double degree);
+t_vec	get_rotate_dir(int key);
+void	rotation_matrix(t_vec axis, double angle, double matrix[3][3]);
+t_vec	apply_rotation_matrix(t_vec vector, double matrix[3][3]);
+
 
 /*************/
 /*	manage	*/

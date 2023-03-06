@@ -3,9 +3,7 @@
 int	key_event(int key, t_meta *meta)
 {
 	if (key == KEY_ESC)
-	{
 		exit_hook(meta);
-	}
 	return (0);
 }
 
@@ -33,21 +31,14 @@ static void	change_coor(int key, t_vec *coor)
 		coor->y -= 1;
 }
 
-static void	change_vec(int key, t_vec *coor)
+static void	change_vec(int key, t_cam *cam)
 {
-	if (key == KEY_ARROW_UP)
-		coor->z -= 0.05;
-	else if (key == KEY_ARROW_DOWN)
-		coor->z += 0.05;
-	else if (key == KEY_ARROW_LEFT)
-		coor->x -= 0.05;
-	else if (key == KEY_ARROW_RIGHT)
-		coor->x += 0.05;
-	else if (key == KEY_SHIFT)
-		coor->y += 0.05;
-	else if (key == KEY_CTRL)
-		coor->y -= 0.05;
-	*coor = clamp(*coor, -1, 1);
+	double	mat[3][3];
+	t_vec	dir;
+
+	dir = get_rotate_dir(key);
+	rotation_matrix(dir, degree_to_radian(15), mat);
+	cam->vec = apply_rotation_matrix(cam->vec, mat);
 }
 
 int	binding_key_events(int key, t_meta *meta)
@@ -66,7 +57,7 @@ int	binding_key_events(int key, t_meta *meta)
 		return (TRUE);
 	}
 	else if (meta->mode == KEY_D)
-		change_vec(key, &(meta->cam.vec));
+		change_vec(key, &(meta->cam));
 	if (meta->mode == KEY_C)
 		change_coor(key, &(meta->cam.coor));
 	ray_tracing(meta);
