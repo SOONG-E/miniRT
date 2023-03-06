@@ -6,7 +6,7 @@
 #    By: yujelee <yujelee@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/06 16:30:08 by yujelee           #+#    #+#              #
-#    Updated: 2023/03/06 16:54:19 by yujelee          ###   ########seoul.kr   #
+#    Updated: 2023/03/06 16:59:25 by yujelee          ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,8 @@ endif
 
 NAME = miniRT
 
+bonus : miniRT
+
 OBJS		=	$(addprefix $(OUTDIR),$(SRCS:%.c=%.o))
 DEPS		=	$(addprefix $(OUTDIR),$(SRCS:%.c=%.d))
 -include $(DEPS)
@@ -79,4 +81,4 @@ re :
 	$(MAKE) fclean
 	$(MAKE) all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus
