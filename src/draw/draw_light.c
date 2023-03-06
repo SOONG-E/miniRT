@@ -58,7 +58,8 @@ t_vec	phong_lighting(t_meta meta, t_ray ray)
 	while (light)
 	{
 		in_shadow = FALSE;
-		light_color = vec_add(light_color, point_light_get(meta, ray, light, &in_shadow));
+		light_color = vec_add(light_color, \
+						point_light_get(meta, ray, light, &in_shadow));
 		if (in_shadow == FALSE)
 			light_color = vec_add(light_color, get_specular(ray, light));
 		light = light->next;

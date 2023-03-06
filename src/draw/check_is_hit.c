@@ -10,21 +10,20 @@ int	hit_sphere(t_obj obj, t_ray ray, t_rec *rec)
 {
 	t_vec	oc;
 	double	a;
-	double	half_b;
+	double	b;
 	double	discriminant;
 	double	root;
 
 	oc = vec_sub(ray.coor, obj.coor);
 	a = length_squared(ray.unit_vec);
-	half_b = vec_dot(oc, ray.unit_vec);
-	discriminant = half_b * half_b - a \
-					* (length_squared(oc) - (obj.ratio * obj.ratio));
+	b = vec_dot(oc, ray.unit_vec);
+	discriminant = b * b - a * (length_squared(oc) - (obj.ratio * obj.ratio));
 	if (discriminant < 0)
 		return (FALSE);
-	root = (-half_b - sqrt(discriminant)) / a;
+	root = (-b - sqrt(discriminant)) / a;
 	if (root < T_MIN || root > rec->t_max)
 	{
-		root = (-half_b + sqrt(discriminant)) / a;
+		root = (-b + sqrt(discriminant)) / a;
 		if (root < T_MIN || rec->t_max < root)
 			return (FALSE);
 	}

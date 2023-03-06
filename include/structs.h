@@ -131,5 +131,4 @@ struct s_discriminant
 	double	sqrtd;
 };
 
-
 #endif
