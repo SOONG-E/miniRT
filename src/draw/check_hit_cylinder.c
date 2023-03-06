@@ -1,26 +1,5 @@
 #include "miniRT.h"
 
-static double	cy_boundary(t_obj obj, t_vec at_point)
-{
-	double	len;
-
-	len = sqrt(pow(obj.cylin.diameter / 2, 2.0) + pow(obj.cylin.height / 2, 2.0));
-	if (len < vec_length(vec_sub(obj.coor, at_point)))
-		return FALSE;
-	return TRUE;
-}
-
-static t_vec	get_normal(t_obj obj, t_vec at_point)
-{
-	t_vec	temp;
-	t_vec	normal;
-
-	temp = vec_sub(at_point, obj.coor);
-	normal = vec_sub(temp, vec_mul(obj.vec, vec_dot(obj.vec, temp)));
-	normal = vec_unit(normal);
-	return normal;
-}
-
 int	hit_cylinder_cap(t_obj obj, t_ray ray, t_rec *rec, double height)
 {
 	double	r;
@@ -47,26 +26,54 @@ int	hit_cylinder_cap(t_obj obj, t_ray ray, t_rec *rec, double height)
 	return (TRUE);
 }
 
+static double	cy_boundary(t_obj obj, t_vec at_point)
+{
+	double	len;
+
+	len = sqrt(pow(obj.cylin.diameter / 2, 2.0) + pow(obj.cylin.height / 2, 2.0));
+	if (len < vec_length(vec_sub(obj.coor, at_point)))
+		return FALSE;
+	return TRUE;
+}
+
+static t_vec	get_normal(t_obj obj, t_vec at_point)
+{
+	t_vec	temp;
+	t_vec	normal;
+
+	temp = vec_sub(at_point, obj.coor);
+	normal = vec_sub(temp, vec_mul(obj.vec, vec_dot(obj.vec, temp)));
+	normal = vec_unit(normal);
+	return normal;
+}
+
+static t_discriminant	discriminate_cylinder(t_obj obj, t_ray ray)
+{
+	t_vec			oc;
+	t_discriminant	disc;
+
+	oc = vec_sub(ray.coor, obj.coor);
+	disc.a = length_squared(vec_cross(ray.unit_vec, obj.vec));
+	disc.b = vec_dot(vec_cross(ray.unit_vec, obj.vec), vec_cross(oc, obj.vec));
+	disc.c = length_squared(vec_cross(oc, obj.vec)) - pow(obj.cylin.diameter / 2, 2);
+	disc.disc = pow(disc.b, 2) - disc.a * disc.c;
+	disc.sqrtd = sqrt(disc.disc);
+
+	return disc;
+}
+
 int	hit_cylinder_side(t_obj obj, t_ray ray, t_rec *rec)
 {
-	double	a;
-	double	half_b;
-	double	c;
-	double	discriminant;
-	double	root;
+	t_discriminant	disc;
+	double			root;
 
-	a = length_squared(vec_cross(ray.unit_vec, obj.vec));
-	half_b = vec_dot(vec_cross(ray.unit_vec, obj.vec), \
-			vec_cross(vec_sub(ray.coor, obj.coor), obj.vec));
-	c = length_squared(vec_cross(vec_sub(ray.coor, obj.coor), obj.vec)) \
-			- pow(obj.cylin.diameter / 2, 2);
-	discriminant = half_b * half_b - a * c;
-	if (discriminant < 0)
+	disc = discriminate_cylinder(obj, ray);
+	if (disc.disc < 0)
 		return (FALSE);
-	root = (-half_b - sqrt(discriminant)) / a;
+	root = (-disc.b - disc.sqrtd) / disc.a;
 	if (root < T_MIN || rec->t_max < root)
 	{
-		root = (-half_b + sqrt(discriminant)) / a;
+		root = (-disc.b + disc.sqrtd) / disc.a;
 		if (root < T_MIN || rec->t_max < root)
 			return (FALSE);
 	}
