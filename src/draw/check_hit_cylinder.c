@@ -30,10 +30,11 @@ static double	cy_boundary(t_obj obj, t_vec at_point)
 {
 	double	len;
 
-	len = sqrt(pow(obj.cylin.diameter / 2, 2.0) + pow(obj.cylin.height / 2, 2.0));
+	len = sqrt(pow(obj.cylin.diameter / 2, 2.0) \
+			+ pow(obj.cylin.height / 2, 2.0));
 	if (len < vec_length(vec_sub(obj.coor, at_point)))
-		return FALSE;
-	return TRUE;
+		return (FALSE);
+	return (TRUE);
 }
 
 static t_vec	get_normal(t_obj obj, t_vec at_point)
@@ -44,7 +45,7 @@ static t_vec	get_normal(t_obj obj, t_vec at_point)
 	temp = vec_sub(at_point, obj.coor);
 	normal = vec_sub(temp, vec_mul(obj.vec, vec_dot(obj.vec, temp)));
 	normal = vec_unit(normal);
-	return normal;
+	return (normal);
 }
 
 static t_discriminant	discriminate_cylinder(t_obj obj, t_ray ray)
@@ -55,11 +56,11 @@ static t_discriminant	discriminate_cylinder(t_obj obj, t_ray ray)
 	oc = vec_sub(ray.coor, obj.coor);
 	disc.a = length_squared(vec_cross(ray.unit_vec, obj.vec));
 	disc.b = vec_dot(vec_cross(ray.unit_vec, obj.vec), vec_cross(oc, obj.vec));
-	disc.c = length_squared(vec_cross(oc, obj.vec)) - pow(obj.cylin.diameter / 2, 2);
+	disc.c = length_squared(vec_cross(oc, obj.vec)) \
+				- pow(obj.cylin.diameter / 2, 2);
 	disc.disc = pow(disc.b, 2) - disc.a * disc.c;
 	disc.sqrtd = sqrt(disc.disc);
-
-	return disc;
+	return (disc);
 }
 
 int	hit_cylinder_side(t_obj obj, t_ray ray, t_rec *rec)
