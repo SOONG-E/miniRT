@@ -13,7 +13,7 @@
 # include "libft.h"
 
 # define WIDTH				800
-# define HEIGHT				WIDTH / (16.0 / 9.0)
+# define HEIGHT				450
 
 # define KEY_ESC			53
 # define KEY_ARROW_LEFT		123
