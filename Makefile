@@ -6,7 +6,7 @@
 #    By: yujelee <yujelee@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/06 16:30:08 by yujelee           #+#    #+#              #
-#    Updated: 2023/03/06 16:59:25 by yujelee          ###   ########seoul.kr   #
+#    Updated: 2023/03/06 20:41:22 by yujelee          ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,10 +24,12 @@ SRCS = \
 		src/miniRT.c						\
 		src/util/get_next_line.c			\
 		src/util/ft_count_array.c			\
-		src/manage/manage_error.c       	\
-		src/manage/manage_resource.c		\
+		src/manage/manage_controller.c		\
+		src/manage/manage_ctrl.c			\
+		src/manage/manage_error.c			\
 		src/manage/manage_keyhook.c			\
 		src/manage/manage_mlx.c				\
+		src/manage/manage_resource.c		\
 		src/parse/parse_line.c              \
 		src/parse/parse_uppercase_type.c	\
 		src/parse/parse_lowercase_type.c    \

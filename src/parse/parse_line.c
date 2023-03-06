@@ -6,7 +6,7 @@
 /*   By: yujelee <yujelee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 16:29:11 by yujelee           #+#    #+#             */
-/*   Updated: 2023/03/06 16:29:12 by yujelee          ###   ########seoul.kr  */
+/*   Updated: 2023/03/06 21:14:17 by yujelee          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,15 @@ static void	recognize_object(char **info, t_meta *meta)
 
 static void	create_meta(char *file_name, t_meta *meta)
 {
-	meta->obj_num = count_objects(file_name) - 3;
+	meta->obj_num = count_objects(file_name) - 2;
 	if (meta->obj_num < 0)
 		ft_exit("lack of objects");
 	meta->objs = (t_obj *)ft_calloc(meta->obj_num, sizeof(t_obj));
 	if (meta->objs == NULL)
 		ft_exit("system function fail");
 	meta->flag = 0;
+	meta->ctrl.category = -1;
+	meta->ctrl.md = -1;
 	meta->mode = -1;
 	meta->light = NULL;
 	meta->hits[SP] = hit_sphere;

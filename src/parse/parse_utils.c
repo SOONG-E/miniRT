@@ -6,7 +6,7 @@
 /*   By: yujelee <yujelee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 16:29:19 by yujelee           #+#    #+#             */
-/*   Updated: 2023/03/06 16:29:20 by yujelee          ###   ########seoul.kr  */
+/*   Updated: 2023/03/06 21:26:40 by yujelee          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ int	count_objects(char *file_name)
 	temp = get_next_line(fd);
 	while (temp)
 	{
-		if (1 < ft_strlen(temp) && temp[0] != '#')
+		if (1 < ft_strlen(temp) && temp[0] != '#' \
+			&& !(temp[0] == 'L' && temp[1] && temp[1] == ' '))
 			++count;
 		free(temp);
 		temp = get_next_line(fd);
