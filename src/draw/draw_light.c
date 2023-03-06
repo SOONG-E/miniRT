@@ -12,7 +12,7 @@ t_vec	reflect(t_vec v1, t_vec v2)
 	return (vec_add(reverse_vec, ray_vec_dot));
 }
 
-t_vec	point_light_get(t_meta meta, t_ray ray, t_light *light)
+t_vec	point_light_get(t_meta meta, t_ray ray, t_light *light, int *shadow)
 {
 	t_vec	diffuse;
 	t_vec	light_dir;
@@ -23,7 +23,10 @@ t_vec	point_light_get(t_meta meta, t_ray ray, t_light *light)
 	light_ray = init_ray(vec_add(ray.rec.p, \
 				vec_mul(ray.rec.normal, T_MIN)), light_dir);
 	if (in_shadow(meta, light_ray, vec_length(light_dir)) == TRUE)
+	{
+		*shadow = TRUE;
 		return (init_vec(0, 0, 0));
+	}
 	light_dir = vec_unit(light_dir);
 	kd = fmax(vec_dot(ray.rec.normal, light_dir), 0.0);
 	diffuse = vec_mul(light->color, kd);
@@ -48,13 +51,16 @@ t_vec	phong_lighting(t_meta meta, t_ray ray)
 {
 	t_vec	light_color;
 	t_light	*light;
+	int		in_shadow;
 
 	light_color = init_vec(0, 0, 0);
 	light = meta.light;
 	while (light)
 	{
-		light_color = vec_add(light_color, point_light_get(meta, ray, light));
-		light_color = vec_add(light_color, get_specular(ray, light));
+		in_shadow = FALSE;
+		light_color = vec_add(light_color, point_light_get(meta, ray, light, &in_shadow));
+		if (in_shadow == FALSE)
+			light_color = vec_add(light_color, get_specular(ray, light));
 		light = light->next;
 	}
 	light_color = vec_add(light_color, meta.ambi.rgb);
