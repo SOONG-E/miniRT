@@ -20,9 +20,13 @@
 # define KEY_ARROW_RIGHT	124
 # define KEY_ARROW_DOWN		125
 # define KEY_ARROW_UP		126
-# define KEY_C				8
 # define KEY_D				2
 # define KEY_Z				6
+# define KEY_C				8
+# define KEY_O				31
+# define KEY_L				37
+# define KEY_M				46
+# define KEY_TAB			48
 # define KEY_SHIFT			257
 # define KEY_CTRL			256
 
@@ -102,6 +106,13 @@ t_vec	apply_rotation_matrix(t_vec vector, double matrix[3][3]);
 /*************/
 /*	manage	*/
 /************/
+
+/* manage_controller.c */
+void	control_obj(int key, t_meta *meta, int *flag);
+
+/* manage_ctrl.c */
+void	select_obj(t_meta *meta);
+void	set_category(int key, t_meta *meta);
 
 /* manage_error.c */
 void	ft_exit(char *errmsg);

@@ -15,6 +15,7 @@ typedef struct s_bg				t_bg;
 typedef struct s_rec			t_rec;
 typedef struct s_ray			t_ray;
 typedef struct s_discriminant	t_discriminant;
+typedef struct s_ctrl			t_ctrl;
 
 enum e_type
 {
@@ -62,6 +63,7 @@ struct s_cylin
 
 struct s_obj
 {
+	int		num;
 	t_type	type;
 	t_vec	coor;
 	t_vec	vec;
@@ -86,11 +88,19 @@ struct s_mlx
 	t_img	img;
 };
 
+struct s_ctrl
+{
+	int		md;
+	int		category;
+	t_light	*light;
+	t_obj	*obj;
+};
+
 struct s_meta
 {
 	int		obj_num;
 	int		flag;
-	int		mode;
+	t_ctrl	ctrl;
 	t_ambi	ambi;
 	t_cam	cam;
 	t_light	*light;

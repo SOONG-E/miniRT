@@ -14,6 +14,8 @@ SRCS = \
 		src/util/ft_count_array.c			\
 		src/manage/manage_error.c       	\
 		src/manage/manage_resource.c		\
+		src/manage/manage_controller.c		\
+		src/manage/manage_ctrl.c			\
 		src/manage/manage_keyhook.c			\
 		src/manage/manage_mlx.c				\
 		src/parse/parse_line.c              \

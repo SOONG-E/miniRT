@@ -26,14 +26,15 @@ static void	recognize_object(char **info, t_meta *meta)
 
 static void	create_meta(char *file_name, t_meta *meta)
 {
-	meta->obj_num = count_objects(file_name) - 3;
+	meta->obj_num = count_objects(file_name) - 2;
 	if (meta->obj_num < 0)
 		ft_exit("lack of objects");
 	meta->objs = (t_obj *)ft_calloc(meta->obj_num, sizeof(t_obj));
 	if (meta->objs == NULL)
 		ft_exit("system function fail");
 	meta->flag = 0;
-	meta->mode = -1;
+	meta->ctrl.category = -1;
+	meta->ctrl.md = -1;
 	meta->light = NULL;
 	meta->hits[SP] = hit_sphere;
 	meta->hits[PL] = hit_plane;

@@ -5,6 +5,7 @@ void	parse_sphere(char **info, t_meta *meta)
 	int	idx;
 
 	idx = get_index(meta);
+	meta->objs[idx].num = idx;
 	meta->objs[idx].type = SP;
 	meta->objs[idx].coor = make_coor(info[1], 0, 0);
 	meta->objs[idx].ratio = (put_double(info[2], 0, 0)) / 2;
@@ -16,6 +17,7 @@ void	parse_plane(char **info, t_meta *meta)
 	int	idx;
 
 	idx = get_index(meta);
+	meta->objs[idx].num = idx;
 	meta->objs[idx].type = PL;
 	meta->objs[idx].coor = make_coor(info[1], 0, 0);
 	meta->objs[idx].vec = make_vec(info[2], -1, 1);
@@ -27,6 +29,7 @@ void	parse_cylinder(char **info, t_meta *meta)
 	int	idx;
 
 	idx = get_index(meta);
+	meta->objs[idx].num = idx;
 	meta->objs[idx].type = CY;
 	meta->objs[idx].coor = make_coor(info[1], 0, 0);
 	meta->objs[idx].vec = make_vec(info[2], -1, 1);
