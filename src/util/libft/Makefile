@@ -1,4 +1,4 @@
-SRCS		=	ft_atoi.c\
+SRCS		=	\
 				ft_atod.c\
 				ft_calloc.c\
 				ft_split.c\
