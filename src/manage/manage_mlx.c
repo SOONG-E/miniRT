@@ -1,6 +1,6 @@
 #include "miniRT.h"
 
-void	put_pixel(t_mlx *mlx, int x, int y, int color)
+void	put_color(t_mlx *mlx, int x, int y, int color)
 {
 	char	*dst;
 

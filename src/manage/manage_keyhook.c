@@ -32,6 +32,6 @@ int	binding_key_events(int key, t_meta *meta)
 	else
 		control_obj(key, meta, &flag);
 	if (flag == TRUE)
-		ray_tracing(meta);
+		ray_trace(meta);
 	return (TRUE);
 }

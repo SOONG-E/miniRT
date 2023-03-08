@@ -18,7 +18,7 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		ft_exit("miniRT need only one argument");
 	parse_line(av[1], &meta);
-	ray_tracing(&meta);
+	ray_trace(&meta);
 	print_manual();
 	open_screen(&(meta.mlx), &meta);
 	return (0);

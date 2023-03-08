@@ -12,7 +12,7 @@ static int	ray_color(t_ray ray, t_meta meta)
 			init_vec((1.0 - t) + t * 0.5, (1.0 - t) + 0.7 * t, 1.0)));
 }
 
-static void	put_color(t_mlx *mlx, t_meta meta, t_bg bg, t_vec ll_corner)
+static void	draw_image(t_mlx *mlx, t_meta meta, t_bg bg, t_vec ll_corner)
 {
 	t_ray	r;
 	double	u;
@@ -32,14 +32,14 @@ static void	put_color(t_mlx *mlx, t_meta meta, t_bg bg, t_vec ll_corner)
 			r.unit_vec = vec_sub(vec_add(vec_add(ll_corner, \
 						vec_mul(bg.hori, u)), vec_mul(bg.verti, v)), r.coor);
 			r.unit_vec = vec_unit(r.unit_vec);
-			put_pixel(mlx, i, j, ray_color(r, meta));
+			put_color(mlx, i, j, ray_color(r, meta));
 			++i;
 		}
 		++j;
 	}
 }
 
-static void	pixel_put(t_mlx *mlx, t_meta meta)
+static void	send_ray(t_mlx *mlx, t_meta meta)
 {
 	t_vec	w;
 	t_vec	u;
@@ -55,12 +55,12 @@ static void	pixel_put(t_mlx *mlx, t_meta meta)
 	bg.verti = vec_mul(v, bg.vp_height);
 	bg.hori = vec_mul(u, bg.vp_height * (16.0 / 9.0));
 	ll_corner = get_lowerleft_corner(meta.cam.coor, bg, w);
-	put_color(mlx, meta, bg, ll_corner);
+	draw_image(mlx, meta, bg, ll_corner);
 }
 
-void	ray_tracing(t_meta *meta)
+void	ray_trace(t_meta *meta)
 {
-	pixel_put(&(meta->mlx), *meta);
+	send_ray(&(meta->mlx), *meta);
 	mlx_put_image_to_window(meta->mlx.mlx_ptr, meta->mlx.win_ptr, \
 							meta->mlx.img.img_ptr, 0, 0);
 }

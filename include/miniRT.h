@@ -54,7 +54,7 @@ int		is_hit(t_meta meta, t_ray ray, t_rec *rec);
 t_vec	phong_lighting(t_meta meta, t_ray ray);
 
 /* ray_trace.c */
-void	ray_tracing(t_meta *meta);
+void	ray_trace(t_meta *meta);
 
 /* ray_trace_util.c */
 t_vec	clamp(t_vec v, double min, double max);
@@ -127,7 +127,7 @@ int		exit_hook(t_meta *meta);
 int		binding_key_events(int key, t_meta *meta);
 
 /* manage_mlx.c */
-void	put_pixel(t_mlx *mlx, int x, int y, int color);
+void	put_color(t_mlx *mlx, int x, int y, int color);
 void	open_screen(t_mlx *mlx, t_meta *meta);
 void	window_init(t_mlx *mlx);
 
